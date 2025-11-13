@@ -15,6 +15,7 @@ import './App.css'
 function App() {
   const [isLoading, setIsLoading] = useState(true)
   const [progress, setProgress] = useState(0)
+  const [showAI, setShowAI] = useState(false)
   const sectionRefs = useScrollAnimation()
 
   useEffect(() => {
@@ -28,6 +29,9 @@ function App() {
         if (i === 6) await import('gsap')
       }
       setIsLoading(false)
+      
+      // Show AI components after main content is loaded
+      setTimeout(() => setShowAI(true), 1000)
     }
 
     loadAssets()
@@ -46,9 +50,13 @@ function App() {
       {/* Three.js Animated Background */}
       <ThreeBackground />
       
-      {/* AI & Interactive Components */}
-      <AIChatbot />
-      <VoiceControl />
+      {/* AI & Interactive Components - Load after main content */}
+      {showAI && (
+        <>
+          <AIChatbot />
+          <VoiceControl />
+        </>
+      )}
       
       {/* Main Content Sections */}
       <div ref={setSectionRef(0)}>

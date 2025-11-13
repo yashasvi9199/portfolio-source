@@ -1,127 +1,132 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react';
+import './Skills.css';
 
 const Skills = () => {
-  const skillCategories = [
-    {
-      category: 'Frontend Technologies',
-      skills: [
-        { name: 'JavaScript', level: 90, color: '#f7df1e' },
-        { name: 'React', level: 85, color: '#61dafb' },
-        { name: 'HTML5', level: 88, color: '#e34f26' },
-        { name: 'CSS3', level: 85, color: '#1572b6' },
-        { name: 'jQuery', level: 80, color: '#0769ad' },
-        { name: 'Redux', level: 75, color: '#764abc' }
-      ]
-    },
-    {
-      category: 'Backend & Databases',
-      skills: [
-        { name: 'Node.js', level: 82, color: '#68a063' },
-        { name: 'Java', level: 78, color: '#007396' },
-        { name: 'Python', level: 75, color: '#3776ab' },
-        { name: 'MySQL', level: 80, color: '#4479a1' },
-        { name: 'MongoDB', level: 70, color: '#47a248' },
-        { name: 'AJAX', level: 85, color: '#00ff88' }
-      ]
-    },
-    {
-      category: 'Tools & Platforms',
-      skills: [
-        { name: 'Git/GitHub', level: 88, color: '#6c63ff' },
-        { name: 'BitBucket', level: 80, color: '#0052cc' },
-        { name: 'Postman', level: 85, color: '#ff6c37' },
-        { name: 'Jira', level: 82, color: '#0052cc' },
-        { name: 'Linux', level: 75, color: '#fcc624' },
-        { name: 'Visual Studio', level: 85, color: '#5c2d91' }
-      ]
-    }
-  ]
+    const skillCategories = [
+        {
+            category: "Frontend Technologies",
+            skills: [
+                { name: "JavaScript", level: 69 },
+                { name: "React", level: 88 },
+                { name: "HTML5", level: 88 },
+                { name: "CSS3", level: 88 },
+                { name: "jQuery", level: 68 },
+                { name: "Redux", level: 72 }
+            ]
+        },
+        {
+            category: "Backend & Databases", 
+            skills: [
+                { name: "Node.js", level: 82 },
+                { name: "Java", level: 74 },
+                { name: "Python", level: 70 },
+                { name: "MySQL", level: 80 },
+                { name: "MongoDB", level: 70 },
+                { name: "AJAX", level: 68 }
+            ]
+        },
+        {
+            category: "Tools & Platforms",
+            skills: [
+                { name: "GitHub", level: 92 },
+                { name: "Docker", level: 93 },
+                { name: "Postman", level: 89 },
+                { name: "Jira", level: 91 },
+                { name: "Linux", level: 78 },
+                { name: "Visual Studio", level: 88 }
+            ]
+        }
+    ];
+    
+    const skillsRef = useRef(null);
+    const [isInView, setIsInView] = useState(false);
 
-  return (
-    <section id="skills" className="section">
-      <div className="container">
-        <h2 style={{
-          textAlign: 'center',
-          marginBottom: '3rem',
-          background: 'linear-gradient(135deg, #6c63ff, #00ff88)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent'
-        }}>
-          Technical Skills
-        </h2>
+    // Intersection Observer
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsInView(entry.isIntersecting);
+            },
+            { threshold: 0.3 } // Changed from 0.3 to 0.5 as you mentioned
+        );
+
+        if (skillsRef.current) {
+            observer.observe(skillsRef.current);
+        }
+
+        return () => {
+            if (skillsRef.current) {
+                observer.unobserve(skillsRef.current);
+            }
+        };
+    }, []);
+
+    // Animation effect
+    useEffect(() => {
+        if (!isInView) return;
+
+        const skillBars = document.querySelectorAll('.skill-progress');
         
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '3rem'
-        }}>
-          {skillCategories.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="skill-category">
-              <h3 style={{
-                marginBottom: '2rem',
-                color: '#fff',
-                textAlign: 'center',
-                fontSize: '1.5rem'
-              }}>
-                {category.category}
-              </h3>
-              
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                gap: '1.5rem'
-              }}>
-                {category.skills.map((skill, index) => (
-                  <div key={index} style={{
-                    padding: '1.5rem',
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    borderRadius: '15px',
-                    backdropFilter: 'blur(20px)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      marginBottom: '1rem'
-                    }}>
-                      <h4 style={{ color: '#fff', margin: 0, fontSize: '1rem' }}>
-                        {skill.name}
-                      </h4>
-                      <span style={{ color: skill.color, fontWeight: 'bold', fontSize: '0.9rem' }}>
-                        {skill.level}%
-                      </span>
-                    </div>
-                    
-                    {/* Skill Bar Container */}
-                    <div style={{
-                      width: '100%',
-                      height: '8px',
-                      background: 'rgba(255, 255, 255, 0.1)',
-                      borderRadius: '4px',
-                      overflow: 'hidden'
-                    }}>
-                      {/* Animated Skill Bar */}
-                      <div 
-                        className="skill-progress"
-                        data-width={`${skill.level}%`}
-                        style={{
-                          width: '0%', // Start at 0 - GSAP will animate to actual width
-                          height: '100%',
-                          background: `linear-gradient(90deg, ${skill.color}, ${skill.color}dd)`,
-                          borderRadius: '4px'
-                        }} 
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
+        // Reset all bars
+        skillBars.forEach(bar => {
+            bar.style.width = '0%';
+            bar.style.transition = 'none';
+        });
 
-export default Skills
+        // Force reflow and animate
+        setTimeout(() => {
+            skillBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                if (width) {
+                    bar.style.transition = 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                    bar.style.width = width;
+                }
+            });
+        }, 100);
+
+    }, [isInView]);
+
+    // Helper function to get skill level class
+    const getSkillLevelClass = (level) => {
+        if (level >= 80) return 'advanced';
+        if (level >= 60) return 'intermediate';
+        return 'beginner';
+    };
+
+    return (
+        <section ref={skillsRef} id="skills" className="skills-section">
+            <div className="skills-container">
+                <h2 className="skills-title">
+                    Technical Skills
+                </h2>
+                
+                <div className="skills-grid">
+                    {skillCategories.map((category, index) => (
+                        <div key={index} className="skill-category">
+                            <h3 className="category-title">{category.category}</h3>
+                            <div className="skills-list">
+                                {category.skills.map((skill, skillIndex) => (
+                                    <div key={skillIndex} className="skill-item">
+                                        <div className="skill-header">
+                                            <span className="skill-name">{skill.name}</span>
+                                            <span className="skill-percentage">{skill.level}%</span>
+                                        </div>
+                                        <div className="skill-bar-container">
+                                            <div 
+                                                className={`skill-progress ${getSkillLevelClass(skill.level)}`}
+                                                data-width={`${skill.level}%`}
+                                                style={{ width: '0%' }}
+                                            ></div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default Skills;
