@@ -50,7 +50,7 @@ const Skills = () => {
           Technical Skills
         </h2>
         
-        <div className="skills-categories" style={{
+        <div style={{
           display: 'flex',
           flexDirection: 'column',
           gap: '3rem'
@@ -66,19 +66,18 @@ const Skills = () => {
                 {category.category}
               </h3>
               
-              <div className="skills-grid" style={{
+              <div style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
                 gap: '1.5rem'
               }}>
                 {category.skills.map((skill, index) => (
-                  <div key={index} className="skill-card" style={{
+                  <div key={index} style={{
                     padding: '1.5rem',
                     background: 'rgba(255, 255, 255, 0.05)',
                     borderRadius: '15px',
                     backdropFilter: 'blur(20px)',
                     border: '1px solid rgba(255, 255, 255, 0.1)',
-                    transition: 'all 0.3s ease'
                   }}>
                     <div style={{
                       display: 'flex',
@@ -86,82 +85,39 @@ const Skills = () => {
                       alignItems: 'center',
                       marginBottom: '1rem'
                     }}>
-                      <h4 style={{ 
-                        color: '#fff', 
-                        margin: 0,
-                        fontSize: '1rem'
-                      }}>
+                      <h4 style={{ color: '#fff', margin: 0, fontSize: '1rem' }}>
                         {skill.name}
                       </h4>
-                      <span style={{ 
-                        color: skill.color, 
-                        fontWeight: 'bold',
-                        fontSize: '0.9rem'
-                      }}>
+                      <span style={{ color: skill.color, fontWeight: 'bold', fontSize: '0.9rem' }}>
                         {skill.level}%
                       </span>
                     </div>
                     
+                    {/* Skill Bar Container */}
                     <div style={{
                       width: '100%',
-                      height: '6px',
+                      height: '8px',
                       background: 'rgba(255, 255, 255, 0.1)',
-                      borderRadius: '3px',
+                      borderRadius: '4px',
                       overflow: 'hidden'
                     }}>
-                      <div style={{
-                        width: `${skill.level}%`,
-                        height: '100%',
-                        background: `linear-gradient(90deg, ${skill.color}, ${skill.color}dd)`,
-                        borderRadius: '3px',
-                        transition: 'width 1s ease-in-out'
-                      }} />
+                      {/* Animated Skill Bar */}
+                      <div 
+                        className="skill-progress"
+                        data-width={`${skill.level}%`}
+                        style={{
+                          width: '0%', // Start at 0 - GSAP will animate to actual width
+                          height: '100%',
+                          background: `linear-gradient(90deg, ${skill.color}, ${skill.color}dd)`,
+                          borderRadius: '4px'
+                        }} 
+                      />
                     </div>
                   </div>
                 ))}
               </div>
             </div>
           ))}
-        </div>
-        
-        <div className="additional-skills" style={{
-          marginTop: '4rem',
-          padding: '2rem',
-          background: 'rgba(255, 255, 255, 0.05)',
-          borderRadius: '20px',
-          backdropFilter: 'blur(20px)',
-          border: '1px solid rgba(255, 255, 255, 0.1)'
-        }}>
-          <h3 style={{ 
-            textAlign: 'center', 
-            marginBottom: '2rem',
-            color: '#fff'
-          }}>
-            Methodologies & Soft Skills
-          </h3>
-          <div style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '1rem',
-            justifyContent: 'center'
-          }}>
-            {[
-              'Full SDLC', 'Agile Development', 'Performance Optimization', 
-              'Knowledge Management', 'Internal Tool Development', 'Leadership',
-              'Team Collaboration', 'Problem Solving', 'Process Optimization'
-            ].map((skill, index) => (
-              <span key={index} style={{
-                padding: '0.5rem 1rem',
-                background: 'rgba(0, 255, 136, 0.1)',
-                border: '1px solid rgba(0, 255, 136, 0.3)',
-                borderRadius: '20px',
-                fontSize: '0.9rem',
-                color: '#00ff88'
-              }}>
-                {skill}
-              </span>
-            ))}
-          </div>
         </div>
       </div>
     </section>
