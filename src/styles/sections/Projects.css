@@ -42,31 +42,29 @@
 }
 
 .filter-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(108, 99, 255, 0.3);
-    color: #fff;
+    background: #1a1a2e;
+    border: 2px solid #6c63ff;
+    color: #ffffff;
     padding: 1rem 2rem;
     border-radius: 30px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 1rem;
-    backdrop-filter: blur(10px);
     font-weight: 500;
 }
 
 .filter-btn:hover {
-    background: rgba(108, 99, 255, 0.2);
-    border-color: #6c63ff;
+    background: #6c63ff;
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(108, 99, 255, 0.2);
+    box-shadow: 0 10px 25px rgba(108, 99, 255, 0.3);
 }
 
 .filter-btn.active {
-    background: linear-gradient(135deg, #6c63ff, #00ff88);
-    border-color: transparent;
-    color: #000;
+    background: #6c63ff;
+    color: #ffffff;
     font-weight: 600;
     transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4);
 }
 
 .flip-hint {
@@ -78,10 +76,10 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    background: rgba(108, 99, 255, 0.1);
+    background: #1a1a2e;
     padding: 1rem;
     border-radius: 15px;
-    border: 1px solid rgba(108, 99, 255, 0.3);
+    border: 2px solid #6c63ff;
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
@@ -101,7 +99,7 @@
 /* Flip Card Styles */
 .project-card {
     background: transparent;
-    border-radius: 25px;
+    border-radius: 20px;
     perspective: 1000px;
     height: 500px;
     cursor: pointer;
@@ -120,8 +118,9 @@
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.8s;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
+    border-radius: 20px;
 }
 
 .project-card.flipped .card-inner {
@@ -133,59 +132,62 @@
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    border-radius: 25px;
+    border-radius: 20px;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(108, 99, 255, 0.2);
     display: flex;
     flex-direction: column;
 }
 
+/* Front Card Styles */
+.card-front {
+    background: linear-gradient(145deg, #16213e, #1a1a2e);
+    border: 2px solid #2d4263;
+    transition: all 0.3s ease;
+}
+
 .card-back {
+    background: linear-gradient(145deg, #0f3460, #16213e);
+    border: 2px solid #6c63ff;
     transform: rotateY(180deg);
     padding: 0;
 }
 
-/* Front Card Styles */
-.card-front {
-    transition: all 0.3s ease;
-}
-
-.project-card:hover .card-front {
-    border-color: rgba(108, 99, 255, 0.4);
-    box-shadow: 0 20px 40px rgba(108, 99, 255, 0.15);
-}
-
 .project-card.featured .card-front {
-    border-color: rgba(0, 255, 136, 0.3);
+    border-color: #00ff88;
 }
 
 .project-card.professional .card-front {
-    border-color: rgba(255, 193, 7, 0.3);
+    border-color: #ffc107;
+}
+
+.project-card:hover .card-front {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
 /* Badges */
 .professional-badge, .featured-badge {
     position: absolute;
     top: 1.5rem;
-    left: 1.5rem;
+    right: 1.5rem; /* Changed from left to right */
+    left: auto; /* Reset left positioning */
     padding: 0.6rem 1.2rem;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 600;
     z-index: 3;
-    backdrop-filter: blur(10px);
 }
 
 .professional-badge {
     background: linear-gradient(135deg, #ffc107, #ff8c00);
     color: #000;
+    border: 2px solid #ff8c00;
 }
 
 .featured-badge {
     background: linear-gradient(135deg, #00ff88, #00cc6a);
     color: #000;
+    border: 2px solid #00cc6a;
 }
 
 .project-image {
@@ -212,7 +214,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -232,25 +234,25 @@
 .project-link {
     width: 55px;
     height: 55px;
-    background: linear-gradient(135deg, #6c63ff, #00ff88);
+    background: #6c63ff;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    border: 2px solid #8b85ff;
 }
 
 .project-link:hover {
+    background: #00ff88;
     transform: scale(1.15);
-    box-shadow: 0 15px 30px rgba(108, 99, 255, 0.4);
+    box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
 }
 
 .project-link i {
     font-size: 1.3rem;
-    color: #000;
+    color: #ffffff;
 }
 
 .project-content {
@@ -259,18 +261,20 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding-top: 0.5rem; /* Added extra top padding */
 }
 
 .project-title {
     font-size: 1.4rem;
     margin-bottom: 1rem;
-    color: #fff;
+    color: #ffffff;
     font-weight: 600;
-    line-height: 1.3;
+    line-height: 0.3;
+    margin-top: 0.2rem; /* Added top margin for more spacing */
 }
 
 .project-description {
-    color: #ccc;
+    color: #e0e0e0;
     margin-bottom: 1.5rem;
     line-height: 1.6;
     font-size: 0.95rem;
@@ -285,19 +289,19 @@
 }
 
 .tech-tag {
-    background: rgba(108, 99, 255, 0.2);
-    color: #6c63ff;
+    background: #2d4263;
+    color: #b3adff;
     padding: 0.4rem 1rem;
     border-radius: 20px;
     font-size: 0.8rem;
-    border: 1px solid rgba(108, 99, 255, 0.3);
+    border: 1px solid #6c63ff;
     font-weight: 500;
 }
 
 .tech-tag.more {
-    background: rgba(255, 255, 255, 0.1);
+    background: #1a1a2e;
     color: #ccc;
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: #555;
 }
 
 /* Back Card Styles */
@@ -312,13 +316,13 @@
 .back-title {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
-    color: #fff;
+    color: #ffffff;
     font-weight: 600;
     text-align: center;
 }
 
 .back-description {
-    color: #ccc;
+    color: #e0e0e0;
     margin-bottom: 1.5rem;
     line-height: 1.7;
     font-size: 0.95rem;
@@ -326,9 +330,9 @@
 }
 
 .project-achievement {
-    background: rgba(255, 193, 7, 0.1);
-    border: 1px solid rgba(255, 193, 7, 0.3);
-    color: #ffc107;
+    background: rgba(255, 193, 7, 0.2);
+    border: 2px solid #ffc107;
+    color: #ffd54f;
     padding: 1rem;
     border-radius: 12px;
     margin-bottom: 1.5rem;
@@ -373,48 +377,26 @@
     display: flex;
     align-items: center;
     gap: 0.7rem;
-    background: linear-gradient(135deg, #6c63ff, #00ff88);
-    color: #000;
+    background: #6c63ff;
+    color: #ffffff;
     text-decoration: none;
     padding: 0.8rem 1.5rem;
     border-radius: 25px;
     font-weight: 600;
     font-size: 0.9rem;
     transition: all 0.3s ease;
-    border: 2px solid transparent;
+    border: 2px solid #8b85ff;
 }
 
 .back-link:hover {
+    background: #00ff88;
+    color: #000;
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(108, 99, 255, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 255, 136, 0.3);
 }
 
 .back-link i {
     font-size: 1rem;
-}
-
-/* Flip Indicators */
-.flip-indicator {
-    position: absolute;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #6c63ff;
-    font-size: 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(108, 99, 255, 0.1);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    border: 1px solid rgba(108, 99, 255, 0.3);
-    backdrop-filter: blur(10px);
-}
-
-.flip-indicator.back {
-    color: #00ff88;
-    background: rgba(0, 255, 136, 0.1);
-    border-color: rgba(0, 255, 136, 0.3);
 }
 
 /* Responsive Design */
@@ -455,7 +437,11 @@
     }
     
     .project-card {
-        height: 450px;
+        height: 480px;
+    }
+    
+    .project-content, .back-content {
+        padding: 1.5rem;
     }
 }
 
@@ -473,11 +459,11 @@
     }
     
     .project-card {
-        height: 420px;
+        height: 460px;
     }
     
     .project-content, .back-content {
-        padding: 1.5rem;
+        padding: 1.2rem;
     }
     
     .professional-badge, .featured-badge {
@@ -485,5 +471,14 @@
         left: 1rem;
         padding: 0.5rem 1rem;
         font-size: 0.7rem;
+    }
+    
+    .back-links {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .back-link {
+        justify-content: center;
     }
 }
