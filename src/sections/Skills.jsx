@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './Skills.css';
+import '../styles/sections/Skills.css';
 
 const Skills = () => {
     const skillCategories = [
