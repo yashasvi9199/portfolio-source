@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import QuantumLoader from './components/QuantumLoader'
 import ThreeBackground from './components/ThreeBackground'
+import AIChatbot from './components/AI/AIChatbot'
+import VoiceControl from './components/Interactive/VoiceControl'
 import Hero from './sections/Hero'
 import About from './sections/About'
 import Skills from './sections/Skills'
@@ -22,15 +24,8 @@ function App() {
         await new Promise(resolve => setTimeout(resolve, 300))
         setProgress((i / steps) * 100)
         
-        // Load critical assets at specific progress points
-        if (i === 3) {
-          // Preload Three.js
-          await import('three')
-        }
-        if (i === 6) {
-          // Preload GSAP
-          await import('gsap')
-        }
+        if (i === 3) await import('three')
+        if (i === 6) await import('gsap')
       }
       setIsLoading(false)
     }
@@ -38,7 +33,6 @@ function App() {
     loadAssets()
   }, [])
 
-  // Assign refs to sections for scroll animations
   const setSectionRef = (index) => (el) => {
     sectionRefs.current[index] = el
   }
@@ -52,7 +46,11 @@ function App() {
       {/* Three.js Animated Background */}
       <ThreeBackground />
       
-      {/* Main Content Sections with Scroll Animations */}
+      {/* AI & Interactive Components */}
+      <AIChatbot />
+      <VoiceControl />
+      
+      {/* Main Content Sections */}
       <div ref={setSectionRef(0)}>
         <Hero />
       </div>
