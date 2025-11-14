@@ -1,106 +1,103 @@
-import React from 'react'
+import React, { useRef, useEffect, useState } from 'react';
+import '../styles/sections/About.css';
 
 const About = () => {
-  return (
-    <section id="about" className="section" style={{
-      background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%)'
-    }}>
-      <div className="container">
-        <h2 style={{
-          textAlign: 'center',
-          marginBottom: '3rem',
-          background: 'linear-gradient(135deg, #6c63ff, #00ff88)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent'
-        }}>
-          Professional Summary
-        </h2>
-        
-        <div className="about-content" style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '3rem',
-          alignItems: 'center'
-        }}>
-          <div className="about-text">
-            <p style={{ fontSize: '1.1rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
-              Results-driven Software Engineer specializing in JavaScript, React, and full-stack development. 
-              Proven expertise in delivering scalable web applications, internal knowledge systems, 
-              performance optimization, and complete SDLC execution.
-            </p>
-            
-            <p style={{ fontSize: '1.1rem', lineHeight: '1.8', marginBottom: '2rem' }}>
-              Passionate about driving technical innovation in dynamic engineering teams with a focus on 
-              modern web technologies, agile development practices, and knowledge management systems.
-            </p>
-            
-            <div className="stats" style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
-              gap: '1.5rem',
-              marginTop: '2rem'
-            }}>
-              <div className="stat" style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#6c63ff' }}>20%</div>
-                <div style={{ color: '#888' }}>Performance Optimization</div>
-              </div>
-              <div className="stat" style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#00ff88' }}>25%</div>
-                <div style={{ color: '#888' }}>Bug Reduction</div>
-              </div>
-              <div className="stat" style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#ff6b6b' }}>7%</div>
-                <div style={{ color: '#888' }}>Cost Reduction</div>
-              </div>
-              <div className="stat" style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#ffa500' }}>600+</div>
-                <div style={{ color: '#888' }}>Customers Served</div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="about-skills" style={{
-            padding: '2rem',
-            background: 'rgba(255, 255, 255, 0.05)',
-            borderRadius: '20px',
-            backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(255, 255, 255, 0.1)'
-          }}>
-            <h3 style={{ marginBottom: '1.5rem', color: '#fff' }}>Core Competencies</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              {[
-                'Full SDLC Execution',
-                'Performance Optimization', 
-                'Internal Tool Development',
-                'Knowledge Management Systems',
-                'Agile Methodologies',
-                'Team Collaboration & Leadership'
-              ].map((skill, index) => (
-                <div key={index} style={{
-                  padding: '1rem',
-                  background: 'rgba(108, 99, 255, 0.1)',
-                  borderRadius: '10px',
-                  border: '1px solid rgba(108, 99, 255, 0.2)',
-                  transition: 'all 0.3s ease',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem'
-                }}>
-                  <div style={{
-                    width: '8px',
-                    height: '8px',
-                    background: '#6c63ff',
-                    borderRadius: '50%'
-                  }} />
-                  {skill}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+    const aboutRef = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
 
-export default About
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                }
+            },
+            { threshold: 0.3 }
+        );
+
+        if (aboutRef.current) {
+            observer.observe(aboutRef.current);
+        }
+
+        return () => {
+            if (aboutRef.current) {
+                observer.unobserve(aboutRef.current);
+            }
+        };
+    }, []);
+
+    const stats = [
+        { number: "3+", label: "Years Experience" },
+        { number: "20+", label: "Projects Completed" },
+        { number: "5", label: "Technologies" },
+        { number: "100%", label: "Client Satisfaction" }
+    ];
+
+    return (
+        <section id="about" className="about-section" ref={aboutRef}>
+            <div className="about-container">
+                <div className="about-content">
+                    <div className="about-text">
+                        <h2 className="about-title">
+                            About <span className="gradient-text">Me</span>
+                        </h2>
+                        
+                        <div className="about-description">
+                            <p>
+                                I'm a passionate <strong>AI Engineer & Quantum Developer</strong> with over 3 years of experience 
+                                in building cutting-edge web applications and intelligent systems. My journey spans from 
+                                enterprise solutions at <strong>Jio Marketplace</strong> and <strong>Amazon</strong> to innovative AI projects that push the 
+                                boundaries of technology.
+                            </p>
+                            
+                            <p>
+                                I specialize in creating seamless user experiences with modern technologies like 
+                                <strong> React, Node.js, Python, and AI/ML integrations</strong>. My work focuses on 
+                                building scalable, performant applications that solve real-world problems.
+                            </p>
+
+                            <p>
+                                When I'm not coding, I'm exploring the fascinating world of <strong>quantum computing</strong> 
+                                and how it can revolutionize web technologies. I believe in continuous learning and 
+                                staying at the forefront of technological innovation.
+                            </p>
+                        </div>
+
+                        <div className="about-stats">
+                            {stats.map((stat, index) => (
+                                <div key={index} className="stat-item">
+                                    <div className="stat-number">{stat.number}</div>
+                                    <div className="stat-label">{stat.label}</div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="about-cta">
+                            <a href="#contact" className="cta-button primary">
+                                Let's Work Together
+                            </a>
+                            <a href="#projects" className="cta-button secondary">
+                                View My Work
+                            </a>
+                        </div>
+                    </div>
+
+                    <div className="about-visual">
+                        <div className="visual-card">
+                            <div className="code-animation">
+                                <div className="code-line">class Developer extends Engineer</div>
+                                <div className="code-line">  constructor()</div>
+                                <div className="code-line">    this.skills = ["AI/ML", "Quantum", "Web Dev"]</div>
+                                <div className="code-line">    this.passion = "Innovation"</div>
+                                <div className="code-line">  buildFuture()</div>
+                                <div className="code-line">    return "Amazing Experiences"</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default About;

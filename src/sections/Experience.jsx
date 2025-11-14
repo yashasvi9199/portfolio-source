@@ -1,180 +1,152 @@
-import React from 'react'
+import React, { useRef, useEffect, useState } from 'react';
+import '../styles/sections/Experience.css';
 
 const Experience = () => {
-  const experiences = [
-    {
-      period: 'Oct 2023 – Mar 2025',
-      role: 'Founder & Operator',
-      company: 'Food Truck Venture',
-      location: 'Jaipur, India',
-      achievements: [
-        'Directed end-to-end operations: menu development, daily procurement, inventory management, financial bookkeeping, and customer service',
-        'Excelled in high-pressure environments managing handwritten order systems and manual ledger tracking',
-        'Generated ₹11,000+ sales over 2 days (₹7,000 net profit) during Navratri 2024, serving ~600 customers'
-      ],
-      technologies: ['Operations Management', 'Financial Planning', 'Customer Service', 'Inventory Management']
-    },
-    {
-      period: 'Feb 2023 – Aug 2023',
-      role: 'Software Engineer',
-      company: 'Appgallop Pvt. Ltd.',
-      location: 'Jaipur, India',
-      achievements: [
-        'Engineered SaaS solutions for sales management, invoicing, and operational workflows',
-        'Developed robust web applications using HTML, CSS, JavaScript, Java, and Visual Studio',
-        'Optimized code architecture and performance by 20%, reduced hardware costs by 7%, decreased bug rates by 25%',
-        'Produced comprehensive user documentation and maintained application stability'
-      ],
-      technologies: ['JavaScript', 'HTML5', 'CSS3', 'Java', 'Visual Studio', 'SaaS Development']
-    },
-    {
-      period: 'Sep 2020 – Jan 2023',
-      role: 'Resolution Specialist',
-      company: 'Amazon Development Center',
-      location: 'Jaipur, India',
-      achievements: [
-        'Analyzed and resolved complex technical challenges for internal/external customers',
-        'Created and maintained centralized portals on internal wiki during sales events',
-        'Curated links and ticket-raising functionality to accelerate customer issue resolution',
-        'Enhanced team efficiency through proactive documentation and process optimization'
-      ],
-      technologies: ['Technical Support', 'Knowledge Management', 'Process Optimization', 'Documentation']
-    },
-    {
-      period: 'Jun 2019 – Sep 2020',
-      role: 'Customer Service Associate',
-      company: 'Amazon Development Center',
-      location: 'Jaipur, India',
-      achievements: [
-        'Delivered exceptional customer support, resolving inquiries with empathy and accuracy',
-        'Maintained high performance standards in fast-paced environment',
-        'Recognized for customer obsession and workplace impact'
-      ],
-      technologies: ['Customer Service', 'Problem Solving', 'Communication', 'CRM Systems']
-    }
-  ]
+    const experienceRef = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
+    const [activeTab, setActiveTab] = useState(0);
 
-  return (
-    <section id="experience" className="section">
-      <div className="container">
-        <h2 style={{
-          textAlign: 'center',
-          marginBottom: '3rem',
-          background: 'linear-gradient(135deg, #6c63ff, #00ff88)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent'
-        }}>
-          Professional Experience
-        </h2>
-        
-        <div className="timeline" style={{
-          position: 'relative',
-          maxWidth: '900px',
-          margin: '0 auto'
-        }}>
-          {experiences.map((exp, index) => (
-            <div key={index} className="timeline-item" style={{
-              display: 'flex',
-              marginBottom: '3rem',
-              position: 'relative'
-            }}>
-              <div style={{
-                flex: '0 0 180px',
-                textAlign: 'right',
-                paddingRight: '2rem',
-                color: '#6c63ff',
-                fontWeight: '600'
-              }}>
-                {exp.period}
-              </div>
-              
-              <div style={{
-                position: 'relative',
-                flex: '1'
-              }}>
-                <div style={{
-                  position: 'absolute',
-                  left: '-11px',
-                  top: '0',
-                  width: '2px',
-                  height: '100%',
-                  background: 'linear-gradient(to bottom, #6c63ff, #00ff88)'
-                }} />
-                
-                <div style={{
-                  position: 'absolute',
-                  left: '-16px',
-                  top: '0',
-                  width: '12px',
-                  height: '12px',
-                  borderRadius: '50%',
-                  background: '#6c63ff',
-                  border: '3px solid #0a0a0a'
-                }} />
-                
-                <div style={{
-                  padding: '2rem',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  borderRadius: '15px',
-                  backdropFilter: 'blur(20px)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  marginLeft: '1rem'
-                }}>
-                  <h3 style={{ color: '#fff', marginBottom: '0.5rem' }}>{exp.role}</h3>
-                  <div style={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: '1rem',
-                    marginBottom: '1rem',
-                    flexWrap: 'wrap'
-                  }}>
-                    <h4 style={{ color: '#6c63ff', fontWeight: '600', margin: 0 }}>
-                      {exp.company}
-                    </h4>
-                    <span style={{ color: '#888', fontSize: '0.9rem' }}>
-                      {exp.location}
-                    </span>
-                  </div>
-                  
-                  <ul style={{ 
-                    color: '#888', 
-                    marginBottom: '1.5rem', 
-                    lineHeight: '1.6',
-                    paddingLeft: '1.5rem'
-                  }}>
-                    {exp.achievements.map((achievement, achievementIndex) => (
-                      <li key={achievementIndex} style={{ marginBottom: '0.5rem' }}>
-                        {achievement}
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <div style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: '0.5rem'
-                  }}>
-                    {exp.technologies.map((tech, techIndex) => (
-                      <span key={techIndex} style={{
-                        padding: '0.25rem 0.75rem',
-                        background: 'rgba(108, 99, 255, 0.1)',
-                        border: '1px solid rgba(108, 99, 255, 0.3)',
-                        borderRadius: '15px',
-                        fontSize: '0.8rem',
-                        color: '#6c63ff'
-                      }}>
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                }
+            },
+            { threshold: 0.3 }
+        );
+
+        if (experienceRef.current) {
+            observer.observe(experienceRef.current);
+        }
+
+        return () => {
+            if (experienceRef.current) {
+                observer.unobserve(experienceRef.current);
+            }
+        };
+    }, []);
+
+    const experiences = [
+        {
+            company: "Self-Employed",
+            position: "Founder & Operator, Food Truck Venture",
+            period: "October 2023 – March 2025",
+            location: "Jaipur, India",
+            achievements: [
+                "Directed end-to-end operations: menu development, daily procurement, inventory management, financial bookkeeping, and customer service",
+                "Excelled in high-pressure environments managing handwritten order systems and manual ledger tracking",
+                "Generated ₹11,000+ sales over 2 days (₹7,000 net profit) during Navratri 2024 festival, serving ~600 customers",
+                "Transitioned to focus on software engineering skill enhancement following health considerations"
+            ],
+            tech: ["Operations Management", "Financial Planning", "Customer Service", "Inventory Management"]
+        },
+        {
+            company: "Appgallop Pvt. Ltd.",
+            position: "Software Engineer",
+            period: "February 2023 – August 2023",
+            location: "Jaipur, India",
+            achievements: [
+                "Engineered SaaS solutions for sales management, invoicing, and operational workflows",
+                "Developed robust web applications using HTML, CSS, JavaScript, Java, and Visual Studio",
+                "Optimized code architecture and performance by 20%, reduced hardware costs by 7%",
+                "Decreased bug rates by 25% through proactive issue resolution and minimal downtime",
+                "Produced comprehensive user documentation for all developed applications"
+            ],
+            tech: ["HTML", "CSS", "JavaScript", "Java", "SaaS", "Visual Studio"]
+        },
+        {
+            company: "Amazon Development Center",
+            position: "Resolution Specialist",
+            period: "September 2020 – January 2023",
+            location: "Jaipur, India",
+            achievements: [
+                "Analyzed and resolved complex technical challenges for internal/external customers",
+                "Created and maintained centralized portals on internal wiki during sales events",
+                "Curated links and ticket-raising functionality to accelerate customer issue resolution",
+                "Enhanced team efficiency through proactive documentation and process optimization initiatives",
+                "Recognized for creating knowledge-sharing websites and promotions portal"
+            ],
+            tech: ["Technical Support", "Knowledge Management", "Process Optimization", "Documentation"]
+        },
+        {
+            company: "Amazon Development Center",
+            position: "Customer Service Associate",
+            period: "June 2019 – September 2020",
+            location: "Jaipur, India",
+            achievements: [
+                "Delivered exceptional customer support, resolving inquiries with empathy, accuracy, and diligence",
+                "Received Customer Obsession Award for exceptional performance and workplace impact",
+                "Awarded Trainee of the Batch as top performer among new hires",
+                "Maintained high customer satisfaction ratings through effective communication"
+            ],
+            tech: ["Customer Service", "Problem Solving", "Communication", "Empathy"]
+        }
+    ];
+
+    return (
+        <section id="experience" className="experience-section" ref={experienceRef}>
+            <div className="experience-container">
+                <h2 className="experience-title">
+                    Professional <span className="gradient-text">Journey</span>
+                </h2>
+                <p className="experience-subtitle">
+                    My path from customer service to software engineering, building expertise with every role
+                </p>
+
+                <div className="experience-content">
+                    <div className="timeline-tabs">
+                        {experiences.map((exp, index) => (
+                            <button
+                                key={index}
+                                className={`tab-button ${activeTab === index ? 'active' : ''}`}
+                                onClick={() => setActiveTab(index)}
+                            >
+                                <span className="tab-period">{exp.period.split(' – ')[0]}</span>
+                                <span className="tab-company">{exp.company}</span>
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="experience-details">
+                        {experiences.map((exp, index) => (
+                            <div
+                                key={index}
+                                className={`experience-item ${activeTab === index ? 'active' : ''} ${isVisible ? 'visible' : ''}`}
+                            >
+                                <div className="experience-header">
+                                    <h3 className="position">{exp.position}</h3>
+                                    <div className="company-period">
+                                        <span className="company">{exp.company}</span>
+                                        <span className="period">{exp.period}</span>
+                                    </div>
+                                    <div className="location">{exp.location}</div>
+                                </div>
+
+                                <div className="achievements">
+                                    <h4>Key Achievements:</h4>
+                                    <ul>
+                                        {exp.achievements.map((achievement, idx) => (
+                                            <li key={idx}>{achievement}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                <div className="tech-used">
+                                    <h4>Skills & Technologies:</h4>
+                                    <div className="tech-tags">
+                                        {exp.tech.map((tech, idx) => (
+                                            <span key={idx} className="tech-tag">{tech}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-              </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
+        </section>
+    );
+};
 
-export default Experience
+export default Experience;
