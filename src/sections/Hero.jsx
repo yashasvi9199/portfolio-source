@@ -56,9 +56,10 @@ const Hero = () => {
           
           <div style={{
             display: 'flex',
-            gap: '1rem',
+            gap: '3rem',
             justifyContent: 'center',
-            flexWrap: 'wrap'
+            flexWrap: 'wrap',
+            // paddingLeft: '21rem'
           }}>
             <button className="btn btn-primary interactive">
               Explore My Work
@@ -69,7 +70,7 @@ const Hero = () => {
           </div>
         </div>
         
-        <div className="scroll-indicator" style={{
+        {/* <div className="scroll-indicator" style={{
           position: 'absolute',
           bottom: '2rem',
           left: '50%',
@@ -87,8 +88,27 @@ const Hero = () => {
             color: '#888',
             fontSize: '0.9rem'
           }}>Scroll to explore</span>
-        </div>
+        </div> */}
       </div>
+      <div className="scroll-indicator" style={{
+          position: 'absolute',
+          bottom: '2rem',
+          left: '51%',
+          transform: 'translateX(-50%)',
+          textAlign: 'center'
+        }}>
+          <div style={{
+            width: '2px',
+            height: '40px',
+            background: 'linear-gradient(to bottom, #6c63ff, transparent)',
+            margin: '0 auto 0.5rem',
+            animation: 'float 2s ease-in-out infinite'
+          }} />
+          <span style={{
+            color: '#888',
+            fontSize: '0.9rem'
+          }}>Scroll to explore</span>
+        </div>
     </section>
   )
 }
