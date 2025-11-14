@@ -44,11 +44,15 @@ const Contact = () => {
         e.preventDefault();
         setIsLoading(true);
         
+        // Your secure Vercel API endpoint
+        const API_URL = 'https://portfolio-api-rust-nine.vercel.app/api/send-telegram';
+        
         try {
-            // 1. Send to your Vercel function (Telegram)
-            const telegramResponse = await fetch('/api/send-telegram', {
+            // 1. Send to your secure Vercel API (Telegram)
+            console.log('Sending to Vercel API...');
+            const apiResponse = await fetch(API_URL, {
                 method: 'POST',
-                headers: {
+                headers: { 
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -59,11 +63,14 @@ const Contact = () => {
                 })
             });
             
-            const telegramResult = await telegramResponse.json();
+            console.log('API Response status:', apiResponse.status);
+            const apiResult = await apiResponse.json();
+            console.log('API Result:', apiResult);
             
-            if (telegramResult.success) {
-                // 2. Send to FormSubmit (email) - optional backup
-                const formsubmitResponse = await fetch('https://formsubmit.co/ajax/yashaldiya@gmail.com', {
+            if (apiResult.success) {
+                // 2. Also send to FormSubmit for email backup (optional)
+                console.log('Sending to FormSubmit...');
+                await fetch('https://formsubmit.co/ajax/yashaldiya@gmail.com', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -79,17 +86,15 @@ const Contact = () => {
                     })
                 });
                 
-                const formsubmitResult = await formsubmitResponse.json();
-                
                 setIsLoading(false);
                 alert('Message sent successfully! 📧✓');
                 setFormData({ name: '', email: '', subject: '', message: '' });
             } else {
                 setIsLoading(false);
-                alert('Failed to send message. Please try again.');
+                alert(`Failed to send message: ${apiResult.error || 'Please try again.'}`);
             }
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Network error:', error);
             setIsLoading(false);
             alert('Failed to send message. Please check your connection.');
         }
