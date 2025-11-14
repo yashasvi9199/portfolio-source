@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
 import '../styles/sections/Contact.css';
-import config from '../config'; // ADD this import
 
 const Contact = () => {
     const contactRef = useRef(null);
