@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import '../styles/sections/Contact.css';
+import config from '../config'; // ADD this import
 
 const Contact = () => {
     const contactRef = useRef(null);
@@ -42,64 +43,55 @@ const Contact = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsLoading(true); //start loading
-        
-        // Your Telegram bot details
-        const botToken = '8524532272:AAHgpHTLPX0MHUATdegVSwozdgk0bFaxRp4';
-        const chatId = '641652753';
+        setIsLoading(true);
         
         try {
-            // 1. Send to FormSubmit (email)
-            const formsubmitResponse = await fetch('https://formsubmit.co/ajax/yashaldiya@gmail.com', {
+            // 1. Send to your Vercel function (Telegram)
+            const telegramResponse = await fetch('/api/send-telegram', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json'
                 },
                 body: JSON.stringify({
                     name: formData.name,
                     email: formData.email,
                     subject: formData.subject,
-                    message: formData.message,
-                    _captcha: 'false',
-                    _subject: 'New Portfolio Message!'
+                    message: formData.message
                 })
             });
             
-            const formsubmitResult = await formsubmitResponse.json();
+            const telegramResult = await telegramResponse.json();
             
-            if (formsubmitResult.success) {
-                // 2. Send Telegram notification (SMS alternative)
-                const telegramMessage = `
-📧 New Portfolio Message!
-
-👤 Name: ${formData.name}
-📧 Email: ${formData.email}
-📋 Subject: ${formData.subject}
-💬 Message: ${formData.message.substring(0, 200)}...
-                `;
-                
-                await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+            if (telegramResult.success) {
+                // 2. Send to FormSubmit (email) - optional backup
+                const formsubmitResponse = await fetch('https://formsubmit.co/ajax/yashaldiya@gmail.com', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Accept': 'application/json'
                     },
                     body: JSON.stringify({
-                        chat_id: chatId,
-                        text: telegramMessage,
-                        parse_mode: 'HTML'
+                        name: formData.name,
+                        email: formData.email,
+                        subject: formData.subject,
+                        message: formData.message,
+                        _captcha: 'false',
+                        _subject: 'New Portfolio Message!'
                     })
                 });
                 
-                setIsLoading(false); // ADD: Stop loading on success
+                const formsubmitResult = await formsubmitResponse.json();
+                
+                setIsLoading(false);
                 alert('Message sent successfully! 📧✓');
                 setFormData({ name: '', email: '', subject: '', message: '' });
             } else {
-                setIsLoading(false); // ADD: Stop loading on error
+                setIsLoading(false);
                 alert('Failed to send message. Please try again.');
             }
         } catch (error) {
-            setIsLoading(false); // ADD: Stop loading on catch
+            console.error('Error:', error);
+            setIsLoading(false);
             alert('Failed to send message. Please check your connection.');
         }
     };
@@ -239,7 +231,6 @@ const Contact = () => {
                                 ></textarea>
                             </div>
 
-                            {/* UPDATED: Button with loader */}
                             <button 
                                 type="submit" 
                                 className="submit-button"
