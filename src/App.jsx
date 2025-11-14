@@ -9,6 +9,8 @@ import Skills from './sections/Skills'
 import Projects from './sections/Projects'
 import Experience from './sections/Experience'
 import Contact from './sections/Contact'
+import Navigation from './sections/Navigation'; // Fixed import path
+import Footer from './sections/Footer'; // Fixed import path
 import { useScrollAnimation } from './hooks/useScrollAnimation'
 import './App.css'
 
@@ -50,6 +52,9 @@ function App() {
       {/* Three.js Animated Background */}
       <ThreeBackground />
       
+      {/* Navigation - FIXED: Added Navigation component */}
+      <Navigation />
+      
       {/* AI & Interactive Components - Load after main content */}
       {showAI && (
         <>
@@ -59,29 +64,34 @@ function App() {
       )}
       
       {/* Main Content Sections */}
-      <div ref={setSectionRef(0)}>
-        <Hero />
-      </div>
+      <main className="main-content">
+        <div ref={setSectionRef(0)}>
+          <Hero />
+        </div>
+        
+        <div ref={setSectionRef(1)}>
+          <About />
+        </div>
+        
+        <div ref={setSectionRef(2)}>
+          <Skills />
+        </div>
+        
+        <div ref={setSectionRef(3)}>
+          <Projects />
+        </div>
+        
+        <div ref={setSectionRef(4)}>
+          <Experience />
+        </div>
+        
+        <div ref={setSectionRef(5)}>
+          <Contact />
+        </div>
+      </main>
       
-      <div ref={setSectionRef(1)}>
-        <About />
-      </div>
-      
-      <div ref={setSectionRef(2)}>
-        <Skills />
-      </div>
-      
-      <div ref={setSectionRef(3)}>
-        <Projects />
-      </div>
-      
-      <div ref={setSectionRef(4)}>
-        <Experience />
-      </div>
-      
-      <div ref={setSectionRef(5)}>
-        <Contact />
-      </div>
+      {/* Footer - FIXED: Added Footer component */}
+      <Footer />
     </div>
   )
 }
