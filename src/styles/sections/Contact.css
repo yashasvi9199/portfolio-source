@@ -1,6 +1,6 @@
 .contact-section {
     padding: 6rem 0;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    background: transparent;
     color: white;
     min-height: 100vh;
     display: flex;
@@ -9,7 +9,7 @@
     overflow: hidden;
 }
 
-.contact-section::before {
+/* .contact-section::before {
     content: '';
     position: absolute;
     top: 0;
@@ -19,7 +19,7 @@
     background: 
         radial-gradient(circle at 10% 20%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 90% 80%, rgba(108, 99, 255, 0.1) 0%, transparent 50%);
-}
+} */
 
 .contact-container {
     max-width: 1200px;
@@ -92,7 +92,7 @@
     align-items: center;
     gap: 1.5rem;
     padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 15px;
     border: 1px solid rgba(108, 99, 255, 0.2);
     text-decoration: none;
@@ -174,7 +174,7 @@
 }
 
 .contact-form-container {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03); 
     border-radius: 20px;
     padding: 2.5rem;
     border: 1px solid rgba(108, 99, 255, 0.2);

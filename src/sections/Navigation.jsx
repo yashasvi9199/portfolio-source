@@ -28,7 +28,6 @@ const Navigation = () => {
         <div className="nav-logo">
           <a href="#home" className="logo-link">
             <span className="logo-text">Yash</span>
-            <span className="logo-dot">.</span>
           </a>
         </div>
 

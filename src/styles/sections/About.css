@@ -1,6 +1,6 @@
 .about-section {
     padding: 6rem 0;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    background: transparent;
     color: white;
     min-height: 100vh;
     display: flex;
@@ -9,7 +9,7 @@
     overflow: hidden;
 }
 
-.about-section::before {
+/* .about-section::before {
     content: '';
     position: absolute;
     top: 0;
@@ -20,7 +20,7 @@
         radial-gradient(circle at 20% 80%, rgba(108, 99, 255, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
     animation: float 6s ease-in-out infinite;
-}
+} */
 
 @keyframes float {
     0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -82,7 +82,7 @@
 .stat-item {
     text-align: center;
     padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 15px;
     border: 1px solid rgba(108, 99, 255, 0.2);
     backdrop-filter: blur(10px);

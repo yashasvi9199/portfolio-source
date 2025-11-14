@@ -270,7 +270,7 @@
     color: #ffffff;
     font-weight: 600;
     line-height: 0.3;
-    margin-top: 0.2rem; /* Added top margin for more spacing */
+    margin-top: 1rem; /* Added top margin for more spacing */
 }
 
 .project-description {

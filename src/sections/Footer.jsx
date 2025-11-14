@@ -10,25 +10,11 @@ const Footer = () => {
           <div className="footer-info">
             <div className="footer-logo">
               <span className="logo-text">Yash Haldiya</span>
-              <span className="logo-dot">.</span>
             </div>
             <p className="footer-description">
               AI Engineer & Quantum Developer passionate about building the future with cutting-edge technology.
             </p>
-            <div className="footer-social">
-              <a href="https://github.com/yashasvi9199" target="_blank" rel="noopener noreferrer" className="social-link">
-                <i className="fab fa-github"></i>
-              </a>
-              <a href="#" className="social-link">
-                <i className="fab fa-linkedin"></i>
-              </a>
-              <a href="#" className="social-link">
-                <i className="fab fa-twitter"></i> 
-              </a>
-              <a href="mailto:yashaldiya@gmail.com" className="social-link">
-                <i className="fas fa-envelope"></i>
-              </a>
-            </div>
+            
           </div>
 
           <div className="footer-links">

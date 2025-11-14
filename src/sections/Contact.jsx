@@ -118,11 +118,8 @@ const Contact = () => {
                                 <a href="https://github.com/yashasvi9199" target="_blank" rel="noopener noreferrer" className="social-link">
                                     <i className="fab fa-github"></i>
                                 </a>
-                                <a href="#" className="social-link">
+                                <a href="https://www.linkedin.com/in/yash-haldiya/" className="social-link">
                                     <i className="fab fa-linkedin"></i>
-                                </a>
-                                <a href="#" className="social-link">
-                                    <i className="fab fa-twitter"></i>
                                 </a>
                                 <a href="#" className="social-link">
                                     <i className="fab fa-instagram"></i>
