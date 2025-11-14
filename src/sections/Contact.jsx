@@ -10,7 +10,8 @@ const Contact = () => {
         subject: '',
         message: ''
     });
-
+    const [isLoading, setIsLoading] = useState(false);
+    
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
@@ -39,12 +40,68 @@ const Contact = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission here
-        console.log('Form submitted:', formData);
-        alert('Thank you for your message! I\'ll get back to you soon.');
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        setIsLoading(true); //start loading
+        
+        // Your Telegram bot details
+        const botToken = '8524532272:AAHgpHTLPX0MHUATdegVSwozdgk0bFaxRp4';
+        const chatId = '641652753';
+        
+        try {
+            // 1. Send to FormSubmit (email)
+            const formsubmitResponse = await fetch('https://formsubmit.co/ajax/yashaldiya@gmail.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    subject: formData.subject,
+                    message: formData.message,
+                    _captcha: 'false',
+                    _subject: 'New Portfolio Message!'
+                })
+            });
+            
+            const formsubmitResult = await formsubmitResponse.json();
+            
+            if (formsubmitResult.success) {
+                // 2. Send Telegram notification (SMS alternative)
+                const telegramMessage = `
+📧 New Portfolio Message!
+
+👤 Name: ${formData.name}
+📧 Email: ${formData.email}
+📋 Subject: ${formData.subject}
+💬 Message: ${formData.message.substring(0, 200)}...
+                `;
+                
+                await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: telegramMessage,
+                        parse_mode: 'HTML'
+                    })
+                });
+                
+                setIsLoading(false); // ADD: Stop loading on success
+                alert('Message sent successfully! 📧✓');
+                setFormData({ name: '', email: '', subject: '', message: '' });
+            } else {
+                setIsLoading(false); // ADD: Stop loading on error
+                alert('Failed to send message. Please try again.');
+            }
+        } catch (error) {
+            setIsLoading(false); // ADD: Stop loading on catch
+            alert('Failed to send message. Please check your connection.');
+        }
     };
 
     const contactInfo = [
@@ -182,9 +239,23 @@ const Contact = () => {
                                 ></textarea>
                             </div>
 
-                            <button type="submit" className="submit-button">
-                                <span>Send Message</span>
-                                <i className="fas fa-paper-plane"></i>
+                            {/* UPDATED: Button with loader */}
+                            <button 
+                                type="submit" 
+                                className="submit-button"
+                                disabled={isLoading}
+                            >
+                                {isLoading ? (
+                                    <div className="button-loader">
+                                        <div className="loader-spinner"></div>
+                                        <span>Sending...</span>
+                                    </div>
+                                ) : (
+                                    <>
+                                        <span>Send Message</span>
+                                        <i className="fas fa-paper-plane"></i>
+                                    </>
+                                )}
                             </button>
                         </form>
                     </div>
