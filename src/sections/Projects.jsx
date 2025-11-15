@@ -5,9 +5,11 @@ import { useParallax } from '../hooks/useParallax';
 const Projects = () => {
     const [activeFilter, setActiveFilter] = useState('all');
     const { elementRef, isRefVisible } = useParallax(0.3);
+    const projectsGridRef = useRef(null);
+    const [visibleProjects, setVisibleProjects] = useState(new Set());
+    
     const handleRef = (element) => {
         elementRef.current = element;
-        // add more refs to be used here
     }
     
     const projectCategories = [
@@ -136,6 +138,59 @@ const Projects = () => {
         ? projects 
         : projects.filter(project => project.category === activeFilter);
 
+    // SIMPLE FIX: Use a single observer for the entire grid
+    useEffect(() => {
+        const gridElement = projectsGridRef.current;
+        if (!gridElement) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                // When grid enters viewport, mark all projects as visible
+                if (entry.isIntersecting) {
+                    const allIndices = filteredProjects.map((_, index) => index);
+                    setVisibleProjects(new Set(allIndices));
+                }
+            },
+            { 
+                threshold: 0.1, // Very low threshold
+                rootMargin: '0px 0px 0px 0px' // No margins
+            }
+        );
+
+        observer.observe(gridElement);
+
+        return () => {
+            observer.disconnect();
+        };
+    }, [filteredProjects]);
+
+    // ALTERNATIVE FIX: Use scroll event listener for more aggressive tracking
+    useEffect(() => {
+        const handleScroll = () => {
+            const gridElement = projectsGridRef.current;
+            if (!gridElement) return;
+
+            const rect = gridElement.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            // If grid is anywhere in the viewport, show all projects
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                const allIndices = filteredProjects.map((_, index) => index);
+                setVisibleProjects(new Set(allIndices));
+            }
+        };
+
+        // Check on mount and on scroll
+        handleScroll();
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('resize', handleScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleScroll);
+        };
+    }, [filteredProjects]);
+
     return (
         <section id="projects" ref={handleRef} className={`projects-section parallax-section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`}>
             <div className="projects-container">
@@ -161,9 +216,14 @@ const Projects = () => {
                     Click on project cards to flip and see more details
                 </div>
 
-                <div className="projects-grid">
-                    {filteredProjects.map(project => (
-                        <ProjectCard key={project.id} project={project} />
+                {/* Add ref to the grid container */}
+                <div ref={projectsGridRef} className="projects-grid">
+                    {filteredProjects.map((project, index) => (
+                        <ProjectCard 
+                            key={project.id} 
+                            project={project} 
+                            isVisible={visibleProjects.has(index)}
+                        />
                     ))}
                 </div>
             </div>
@@ -171,31 +231,8 @@ const Projects = () => {
     );
 };
 
-const ProjectCard = ({ project }) => {
-    const cardRef = useRef(null);
-    const [isVisible, setIsVisible] = useState(false);
+const ProjectCard = ({ project, isVisible }) => {
     const [isFlipped, setIsFlipped] = useState(false);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                }
-            },
-            { threshold: 0.1 }
-        );
-
-        if (cardRef.current) {
-            observer.observe(cardRef.current);
-        }
-
-        return () => {
-            if (cardRef.current) {
-                observer.unobserve(cardRef.current);
-            }
-        };
-    }, []);
 
     const handleFlip = () => {
         setIsFlipped(!isFlipped);
@@ -203,12 +240,11 @@ const ProjectCard = ({ project }) => {
 
     return (
         <div 
-            ref={cardRef}
             className={`project-card ${project.featured ? 'featured' : ''} ${project.professional ? 'professional' : ''} ${isVisible ? 'visible' : ''} ${isFlipped ? 'flipped' : ''}`}
             onClick={handleFlip}
         >
             <div className="card-inner">
-                {/* Front of Card */}
+                {/* Front of Card - EXACTLY THE SAME AS BEFORE */}
                 <div className="card-front">
                     {project.professional && <div className="professional-badge">Professional</div>}
                     {project.featured && !project.professional && <div className="featured-badge">Featured</div>}
@@ -246,7 +282,7 @@ const ProjectCard = ({ project }) => {
                     </div>
                 </div>
 
-                {/* Back of Card */}
+                {/* Back of Card - EXACTLY THE SAME AS BEFORE */}
                 <div className="card-back">
                     <div className="back-content">
                         <h3 className="back-title">{project.title}</h3>

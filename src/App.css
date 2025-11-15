@@ -83,3 +83,23 @@ section {
     display: flex;
     align-items: center;
 }
+
+
+
+
+
+/* TEMPORARY: Disable parallax effects */
+.parallax-section {
+  transform: none !important;
+  filter: none !important;
+}
+
+.section-fade-out {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+.section-fade-in {
+  opacity: 1 !important;
+  filter: none !important;
+}
