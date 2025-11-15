@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import '../styles/sections/Contact.css';
+import { useParallax } from '../hooks/useParallax';
 
 const Contact = () => {
     const contactRef = useRef(null);
@@ -11,6 +12,12 @@ const Contact = () => {
         message: ''
     });
     const [isLoading, setIsLoading] = useState(false);
+    const { elementRef, isRefVisible } = useParallax(0.3);
+    const handleRef = (element) => {
+        elementRef.current = element;
+        contactRef.current = element;
+        // add more refs to be used here
+    }
     
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -128,7 +135,7 @@ const Contact = () => {
     ];
 
     return (
-        <section id="contact" className="contact-section" ref={contactRef}>
+        <section id="contact" ref={handleRef} className={`contact-section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`}>
             <div className="contact-container">
                 <h2 className="contact-title">
                     Get In <span className="gradient-text">Touch</span>

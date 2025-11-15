@@ -1,10 +1,17 @@
 import React, { useRef, useEffect, useState } from 'react';
 import '../styles/sections/Experience.css';
+import { useParallax } from '../hooks/useParallax';
 
 const Experience = () => {
     const experienceRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
     const [activeTab, setActiveTab] = useState(0);
+    const { elementRef, isRefVisible } = useParallax(0.3);
+    const handleRef = (element) => {
+        elementRef.current = element;
+        experienceRef.current = element;
+        // add more refs to be used here
+    }
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -85,7 +92,7 @@ const Experience = () => {
     ];
 
     return (
-        <section id="experience" className="experience-section" ref={experienceRef}>
+        <section id="experience" ref={handleRef} className={`experience-section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`} >
             <div className="experience-container">
                 <h2 className="experience-title">
                     Professional <span className="gradient-text">Journey</span>

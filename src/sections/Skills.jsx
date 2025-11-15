@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../styles/sections/Skills.css';
+import { useParallax } from '../hooks/useParallax';
 
 const Skills = () => {
     const skillCategories = [
@@ -40,6 +41,12 @@ const Skills = () => {
     
     const skillsRef = useRef(null);
     const [isInView, setIsInView] = useState(false);
+    const { elementRef, isRefVisible } = useParallax(0.3);
+    const handleRef = (element) => {
+        elementRef.current = element;
+        skillsRef.current = element;
+        // add more refs to be used here
+    }
 
     // Intersection Observer
     useEffect(() => {
@@ -94,7 +101,7 @@ const Skills = () => {
     };
 
     return (
-        <section ref={skillsRef} id="skills" className="skills-section">
+        <section id="skills" ref={handleRef} className={`skills-section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`} >
             <div className="skills-container">
                 <h2 className="skills-title">
                     Technical Skills

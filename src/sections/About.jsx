@@ -1,8 +1,14 @@
 import React from 'react'
+import { useParallax } from '../hooks/useParallax';
 
 const About = () => {
+  const { elementRef, isRefVisible } = useParallax(0.3);
+  const handleRef = (element) => {
+    elementRef.current = element;
+    // add more refs to be used here
+  }
   return (
-    <section id="about" className="section" style={{
+    <section id="about" ref={handleRef} className={`section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`} style={{
       background: 'transparent'
     }}>
       <div className="container">

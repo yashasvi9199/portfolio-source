@@ -1,8 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../styles/sections/Projects.css';
+import { useParallax } from '../hooks/useParallax';
 
 const Projects = () => {
     const [activeFilter, setActiveFilter] = useState('all');
+    const { elementRef, isRefVisible } = useParallax(0.3);
+    const handleRef = (element) => {
+        elementRef.current = element;
+        // add more refs to be used here
+    }
     
     const projectCategories = [
         { id: 'all', name: 'All Projects' },
@@ -131,7 +137,7 @@ const Projects = () => {
         : projects.filter(project => project.category === activeFilter);
 
     return (
-        <section id="projects" className="projects-section">
+        <section id="projects" ref={handleRef} className={`projects-section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`}>
             <div className="projects-container">
                 <h2 className="projects-title">Featured Projects</h2>
                 <p className="projects-subtitle">

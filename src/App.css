@@ -38,3 +38,35 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(45deg, #7b73ff, #5a54c5);
 }
+
+/*! Parallax Performance Optimization */
+.parallax-section {
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* Smooth scrolling for whole site */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Prevent layout shifts during parallax */
+section {
+    overflow: hidden;
+}
+
+/* Ensure smooth transitions for fade effects */
+.parallax-section {
+    transition: opacity 0.3s ease-out, transform 0.1s linear;
+    will-change: transform, opacity;
+}
+
+/* Optional: Add blur effect when fading */
+.section-fade-out {
+    filter: blur(2px);
+}
+
+.section-fade-in {
+    filter: blur(0);
+}

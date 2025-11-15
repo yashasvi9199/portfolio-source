@@ -1,10 +1,17 @@
 import React from 'react';
 import '../styles/sections/Footer.css';
+import { useParallax } from '../hooks/useParallax';
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { elementRef, isRefVisible } = useParallax(0.3);
+  const handleRef = (element) => {
+    elementRef.current = element;
+    // add more refs to be used here
+  }
 
   return (
-    <footer className="footer">
+    <footer ref={handleRef} className={`footer ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`} >
       <div className="footer-container">
         <div className="footer-content">
           <div className="footer-info">
