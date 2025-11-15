@@ -137,7 +137,7 @@ const Projects = () => {
         : projects.filter(project => project.category === activeFilter);
 
     return (
-        <section id="projects" ref={handleRef} className={`projects-section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`}>
+        <section id="projects" ref={handleRef} className={`projects-section parallax-section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`}>
             <div className="projects-container">
                 <h2 className="projects-title">Featured Projects</h2>
                 <p className="projects-subtitle">

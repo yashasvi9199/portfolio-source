@@ -11,7 +11,7 @@ const Footer = () => {
   }
 
   return (
-    <footer ref={handleRef} className={`footer ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`} >
+    <footer ref={handleRef} className={`footer parallax-section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`} >
       <div className="footer-container">
         <div className="footer-content">
           <div className="footer-info">

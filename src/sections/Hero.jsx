@@ -13,7 +13,7 @@ const Hero = () => {
   }
 
   return (
-    <section ref={handleRef} className={`hero-section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`} style={{
+    <section ref={handleRef} className={`hero-section parallax-section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`} style={{
       minHeight: '100vh',
       display: 'flex',
       alignItems: 'center',

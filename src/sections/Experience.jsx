@@ -92,7 +92,7 @@ const Experience = () => {
     ];
 
     return (
-        <section id="experience" ref={handleRef} className={`experience-section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`} >
+        <section id="experience" ref={handleRef} className={`experience-section parallax-section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`} >
             <div className="experience-container">
                 <h2 className="experience-title">
                     Professional <span className="gradient-text">Journey</span>

@@ -44,6 +44,8 @@ body {
     will-change: transform;
     backface-visibility: hidden;
     transform: translateZ(0);
+    transition: opacity 0.3s ease-out, transform 0.1s linear;
+    will-change: transform;
 }
 
 /* Smooth scrolling for whole site */
@@ -56,10 +58,8 @@ section {
     overflow: hidden;
 }
 
-/* Ensure smooth transitions for fade effects */
-.parallax-section {
-    transition: opacity 0.3s ease-out, transform 0.1s linear;
-    will-change: transform, opacity;
+.parallax-section > * {
+  transform: translateZ(0);
 }
 
 /* Optional: Add blur effect when fading */
@@ -69,4 +69,17 @@ section {
 
 .section-fade-in {
     filter: blur(0);
+}
+
+/* Fix for Skills section not being in focus */
+/* Prevent animation reset on scroll */
+.skill-progress.animated {
+    transition: none !important;
+}
+
+/* Ensure smooth section focus */
+.skills-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
 }

@@ -135,7 +135,7 @@ const Contact = () => {
     ];
 
     return (
-        <section id="contact" ref={handleRef} className={`contact-section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`}>
+        <section id="contact" ref={handleRef} className={`contact-section parallax-section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`}>
             <div className="contact-container">
                 <h2 className="contact-title">
                     Get In <span className="gradient-text">Touch</span>

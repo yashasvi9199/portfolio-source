@@ -1,7 +1,7 @@
 /* Skills Section - Modern Design - Vertical Layout with Transparent Background */
 .skills-section {
-    padding: 5rem 0;
-    background: transparent; /* Changed from gradient to transparent */
+    padding: 4rem 0;
+    background: transparent;
     color: white;
     min-height: 100vh;
     display: flex;
@@ -21,10 +21,10 @@
 }
 
 .skills-container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
-    width: 100%;
     position: relative;
     z-index: 2;
 }
@@ -42,14 +42,14 @@
 }
 
 .skills-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
 }
 
 .skill-category {
-    background: rgba(255, 255, 255, 0.05); /* Semi-transparent background */
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     padding: 3rem;
     border-radius: 20px;
@@ -57,6 +57,7 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    opacity: 1;
 }
 
 .skill-category::before {
@@ -78,7 +79,7 @@
     transform: translateY(-5px);
     border-color: rgba(108, 99, 255, 0.4);
     box-shadow: 0 20px 40px rgba(108, 99, 255, 0.15);
-    background: rgba(255, 255, 255, 0.08); /* Slightly more opaque on hover */
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .category-title {
@@ -103,14 +104,16 @@
     border-radius: 3px;
 }
 
+/* FIX 2: Changed to flex column layout */
 .skills-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Reduced gap for better vertical flow */
 }
 
 .skill-item {
     transition: transform 0.2s ease;
+    width: 100%; /* Ensure full width */
 }
 
 .skill-item:hover {
@@ -121,7 +124,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem; /* Reduced margin */
 }
 
 .skill-name {
@@ -158,14 +161,19 @@
     position: relative;
 }
 
+/* FIX 1: Progress bar animation */
 .skill-progress {
     height: 100%;
-    background: linear-gradient(90deg, #6c63ff, #00ff88);
     border-radius: 10px;
-    width: 0%;
+    width: 0%; /* Start at 0 */
     transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     box-shadow: 0 0 20px rgba(108, 99, 255, 0.3);
+}
+
+/* FIX 1: Animation state - when element is in view */
+.skill-item.in-view .skill-progress {
+    width: var(--skill-level, 0%); /* Animate to actual width */
 }
 
 /* Skill level color variations */
@@ -183,9 +191,9 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-    .skills-list {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
     }
 }
 
@@ -212,9 +220,13 @@
         margin-bottom: 2rem;
     }
     
-    .skills-list {
+    .skills-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 2rem;
+    }
+    
+    .skills-list {
+        gap: 1.25rem;
     }
 }
 
@@ -242,6 +254,10 @@
     .skill-percentage {
         font-size: 0.9rem;
         padding: 0.3rem 0.8rem;
+    }
+    
+    .skills-list {
+        gap: 1rem;
     }
 }
 

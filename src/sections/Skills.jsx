@@ -40,58 +40,77 @@ const Skills = () => {
     ];
     
     const skillsRef = useRef(null);
-    const [isInView, setIsInView] = useState(false);
+    const categoryRefs = useRef([]);
+    const [animatedCategories, setAnimatedCategories] = useState(new Set());
     const { elementRef, isRefVisible } = useParallax(0.3);
+    
     const handleRef = (element) => {
         elementRef.current = element;
         skillsRef.current = element;
-        // add more refs to be used here
     }
 
-    // Intersection Observer
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                setIsInView(entry.isIntersecting);
-            },
-            { threshold: 0.3 } // Changed from 0.3 to 0.5 as you mentioned
-        );
+    // Set up refs for each category
+    const setCategoryRef = (index) => (element) => {
+        categoryRefs.current[index] = element;
+    };
 
-        if (skillsRef.current) {
-            observer.observe(skillsRef.current);
-        }
+    // Multiple observers for each category
+    useEffect(() => {
+        const observers = [];
+        
+        categoryRefs.current.forEach((categoryElement, index) => {
+            if (!categoryElement) return;
+            
+            const observer = new IntersectionObserver(
+                ([entry]) => {
+                    if (entry.isIntersecting) {
+                        setAnimatedCategories(prev => new Set([...prev, index]));
+                    }
+                },
+                { 
+                    threshold: 0.3,
+                    rootMargin: '0px 0px -100px 0px'
+                }
+            );
+            
+            observer.observe(categoryElement);
+            observers.push(observer);
+        });
 
         return () => {
-            if (skillsRef.current) {
-                observer.unobserve(skillsRef.current);
-            }
+            observers.forEach(observer => observer.disconnect());
         };
     }, []);
 
-    // Animation effect
+    // UPDATED: Animation effect with CSS integration
     useEffect(() => {
-        if (!isInView) return;
+        animatedCategories.forEach(categoryIndex => {
+            const categoryElement = categoryRefs.current[categoryIndex];
+            if (!categoryElement) return;
 
-        const skillBars = document.querySelectorAll('.skill-progress');
-        
-        // Reset all bars
-        skillBars.forEach(bar => {
-            bar.style.width = '0%';
-            bar.style.transition = 'none';
-        });
-
-        // Force reflow and animate
-        setTimeout(() => {
-            skillBars.forEach(bar => {
-                const width = bar.getAttribute('data-width');
-                if (width) {
-                    bar.style.transition = 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
-                    bar.style.width = width;
+            const skillItems = categoryElement.querySelectorAll('.skill-item');
+            const skillBars = categoryElement.querySelectorAll('.skill-progress');
+            
+            skillItems.forEach((skillItem, itemIndex) => {
+                if (!skillItem.classList.contains('in-view')) {
+                    skillItem.classList.add('in-view');
                 }
             });
-        }, 100);
 
-    }, [isInView]);
+            skillBars.forEach((bar, barIndex) => {
+                if (!bar.classList.contains('animated')) {
+                    const width = bar.getAttribute('data-width');
+                    bar.style.setProperty('--skill-level', width); // Set CSS variable
+                    bar.style.transition = 'width 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+                    
+                    setTimeout(() => {
+                        bar.style.width = width;
+                        bar.classList.add('animated');
+                    }, barIndex * 150);
+                }
+            });
+        });
+    }, [animatedCategories]);
 
     // Helper function to get skill level class
     const getSkillLevelClass = (level) => {
@@ -101,7 +120,7 @@ const Skills = () => {
     };
 
     return (
-        <section id="skills" ref={handleRef} className={`skills-section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`} >
+        <section id="skills" ref={handleRef} className={`skills-section  ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`}>
             <div className="skills-container">
                 <h2 className="skills-title">
                     Technical Skills
@@ -109,7 +128,11 @@ const Skills = () => {
                 
                 <div className="skills-grid">
                     {skillCategories.map((category, index) => (
-                        <div key={index} className="skill-category">
+                        <div 
+                            key={index} 
+                            ref={setCategoryRef(index)}
+                            className="skill-category"
+                        >
                             <h3 className="category-title">{category.category}</h3>
                             <div className="skills-list">
                                 {category.skills.map((skill, skillIndex) => (

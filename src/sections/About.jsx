@@ -8,7 +8,7 @@ const About = () => {
     // add more refs to be used here
   }
   return (
-    <section id="about" ref={handleRef} className={`section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`} style={{
+    <section id="about" ref={handleRef} className={`section parallax-section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`} style={{
       background: 'transparent'
     }}>
       <div className="container">
