@@ -3,10 +3,9 @@ import '../styles/sections/Projects.css';
 
 const Projects = () => {
     const [activeFilter, setActiveFilter] = useState('all');
+    const [currentPage, setCurrentPage] = useState(1);
     const projectsGridRef = useRef(null);
     const [visibleProjects, setVisibleProjects] = useState(new Set());
-    const [isFlipped, setIsFlipped] = useState(false);
-    const [showBadge, setShowBadge] = useState(true);
     
     const projectCategories = [
         { id: 'all', name: 'All Projects' },
@@ -166,6 +165,32 @@ const Projects = () => {
         ? projects 
         : projects.filter(project => project.category === activeFilter);
 
+    // Pagination logic - only for 'all' filter
+    const showPagination = activeFilter === 'all';
+    const projectsPerRow = window.innerWidth >= 1200 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+    const projectsPerPage = projectsPerRow * 2; // 2 rows
+    const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+    const currentProjects = showPagination 
+        ? filteredProjects.slice((currentPage - 1) * projectsPerPage, currentPage * projectsPerPage)
+        : filteredProjects;
+
+    // Reset to page 1 when filter changes or window resizes
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [activeFilter]);
+
+    // Recalculate on window resize
+    useEffect(() => {
+        const handleResize = () => {
+            if (activeFilter === 'all') {
+                setCurrentPage(1);
+            }
+        };
+        
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [activeFilter]);
+
     useEffect(() => {
         const gridElement = projectsGridRef.current;
         if (!gridElement) return;
@@ -174,7 +199,7 @@ const Projects = () => {
         let observer;
 
         const showAllProjects = () => {
-            const allIndices = filteredProjects.map((_, index) => index);
+            const allIndices = currentProjects.map((_, index) => index);
             setVisibleProjects(new Set(allIndices));
         };
 
@@ -201,7 +226,7 @@ const Projects = () => {
                 clearTimeout(timeoutId);
             }
         };
-    }, [filteredProjects.length, activeFilter]);
+    }, [currentProjects.length, activeFilter]);
 
     return (
         <section id="projects" className={`projects-section`}>
@@ -229,7 +254,7 @@ const Projects = () => {
                 </div>
 
                 <div ref={projectsGridRef} className="projects-grid">
-                    {filteredProjects.map((project, index) => (
+                    {currentProjects.map((project, index) => (
                         <ProjectCard 
                             key={project.id} 
                             project={project} 
@@ -237,6 +262,30 @@ const Projects = () => {
                         />
                     ))}
                 </div>
+
+                {showPagination && totalPages > 1 && (
+                    <div className="pagination-controls">
+                        <button 
+                            className="pagination-btn"
+                            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                            disabled={currentPage === 1}
+                        >
+                            <i className="fas fa-chevron-left"></i>
+                        </button>
+                        
+                        <span className="pagination-info">
+                            Page {currentPage} of {totalPages}
+                        </span>
+                        
+                        <button 
+                            className="pagination-btn"
+                            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                            disabled={currentPage === totalPages}
+                        >
+                            <i className="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                )}
             </div>
         </section>
     );
@@ -249,16 +298,15 @@ const ProjectCard = ({ project, isVisible }) => {
     const handleFlip = () => {
         const newFlippedState = !isFlipped;
         setIsFlipped(newFlippedState);
-        // Hide badge when flipping to back, show when flipping to front
         setShowBadge(!newFlippedState);
     };
 
     return (
         <div 
             className={`project-card ${project.featured ? 'featured' : ''} ${project.professional ? 'professional' : ''} ${isVisible ? 'visible' : ''} ${isFlipped ? 'flipped' : ''}`}
-            onClick={handleFlip}>
+            onClick={handleFlip}
+        >
             <div className="card-inner">
-                {/* Front of Card */}
                 <div className="card-front">
                     {showBadge && project.professional && <div className="professional-badge">Professional</div>}
                     {showBadge && project.featured && !project.professional && <div className="featured-badge">Featured</div>}
@@ -273,17 +321,14 @@ const ProjectCard = ({ project, isVisible }) => {
                             ))}
                         </div>
                     </div>
-                    <div className="flip-btn-container">
-                        <button className={`flip-btn ${isFlipped ? 'flipped' : ''}`} onClick={(e) => { e.stopPropagation(); handleFlip(); }}>
-                            <i className="fas fa-sync-alt"></i>
-                        </button>
-                    </div>
+
+                    <button className={`flip-btn ${isFlipped ? 'flipped' : ''}`} onClick={(e) => { e.stopPropagation(); handleFlip(); }}>
+                        <i className="fas fa-sync-alt"></i>
+                    </button>
                 </div>
 
-                {/* Back of Card */}
                 <div className="card-back">
                     <div className="back-content">
-                        {/* <h3 className="back-title">{project.title}</h3> */}
                         <p className="back-description">{project.detailedDescription}</p>
                         
                         {project.achievement && (
@@ -307,8 +352,7 @@ const ProjectCard = ({ project, isVisible }) => {
                                 </a>
                             )}
                         </div>
-                    </div>
-                    <div className="flip-btn-container">
+
                         <button className={`flip-btn ${isFlipped ? 'flipped' : ''}`} onClick={(e) => { e.stopPropagation(); handleFlip(); }}>
                             <i className="fas fa-sync-alt"></i>
                         </button>
