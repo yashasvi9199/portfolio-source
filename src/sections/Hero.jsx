@@ -13,7 +13,7 @@ const Hero = () => {
   }
 
   return (
-    <section ref={handleRef} className={`hero-section parallax-section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`} style={{
+    <section id='home' ref={handleRef} className={`hero-section parallax-section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`} style={{
       minHeight: '100vh',
       display: 'flex',
       alignItems: 'center',
@@ -67,12 +67,14 @@ const Hero = () => {
             flexWrap: 'wrap',
             // paddingLeft: '21rem'
           }}>
+            <a href="#projects">
             <button className="btn btn-primary interactive">
               Explore My Work
-            </button>
+            </button></a>
+            <a href="#contact">
             <button className="btn btn-secondary interactive">
               Contact Me
-            </button>
+            </button></a>
           </div>
         </div>
         
