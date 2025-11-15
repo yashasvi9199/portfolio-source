@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../styles/sections/Skills.css';
-import { useParallax } from '../hooks/useParallax';
 
 const Skills = () => {
     const skillCategories = [
@@ -42,13 +41,7 @@ const Skills = () => {
     const skillsRef = useRef(null);
     const categoryRefs = useRef([]);
     const [animatedCategories, setAnimatedCategories] = useState(new Set());
-    const { elementRef, isRefVisible } = useParallax(0.3);
     
-    const handleRef = (element) => {
-        elementRef.current = element;
-        skillsRef.current = element;
-    }
-
     // Set up refs for each category
     const setCategoryRef = (index) => (element) => {
         categoryRefs.current[index] = element;
@@ -120,7 +113,7 @@ const Skills = () => {
     };
 
     return (
-        <section id="skills" ref={handleRef} className={`skills-section  ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`}>
+        <section id="skills" ref={skillsRef} className={`skills-section`}>
             <div className="skills-container">
                 <h2 className="skills-title">
                     Technical Skills

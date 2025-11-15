@@ -1,19 +1,14 @@
 import React, { useEffect, useRef } from 'react'
 import { useTypewriter } from '../hooks/useTypewriter'
 import '../styles/main.css'
-import { useParallax } from '../hooks/useParallax';
 
 const Hero = () => {
   const textRef = useRef(null)
   const { displayText: typedText } = useTypewriter('AI Engineer & Quantum Developer', 50, 1000)
-  const { elementRef, isRefVisible } = useParallax(0.3);
-  const handleRef = (element) => {
-    elementRef.current = element;
-    // add more refs to be used here
-  }
+  
 
   return (
-    <section id='home' ref={handleRef} className={`hero-section parallax-section ${isRefVisible ? 'section-fade-in' : 'section-fade-out'}`} style={{
+    <section id='home' className={`hero-section`} style={{
       minHeight: '100vh',
       display: 'flex',
       alignItems: 'center',
