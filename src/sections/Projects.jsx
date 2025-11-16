@@ -73,14 +73,15 @@ const Projects = () => {
         },
         {
             id: 5,
-            title: "Ecommerce Platform",
+            title: "Weather Application",
             category: "web",
-            description: "Implemented full-stack MERN ecommerce platform with JWT authentication and secure payment gateway integration.",
-            detailedDescription: "Built full-stack ecommerce solution processing 500+ daily transactions with JWT-based authentication. Integrated payment gateways achieving 99.2% success rate and optimized MongoDB queries reducing database response time by 45%.",
-            tech: ["React", "Node.js", "MongoDB", "Express", "JWT"],
-            githubLink: "https://github.com/yashasvi9199/ecommerce",
-            liveDemo: "#",
-            image: "/api/placeholder/400/250"
+            description: "Built geolocation-enabled weather application with API integration and responsive data visualization components.",
+            detailedDescription: "Created weather application integrating 3+ meteorological APIs with 95% data accuracy. Implemented geolocation services reducing location detection time by 2 seconds and responsive visualizations supporting 50+ weather parameters in real-time.",
+            tech: ["React", "API Integration", "CSS3", "Geolocation"],
+            githubLink: "https://github.com/yashasvi9199/weather-app",
+            liveDemo: "https://yashasvi9199.github.io/weather-app/",
+            image: "/api/placeholder/400/250",
+            featured: true
         },
         {
             id: 6,
@@ -117,12 +118,12 @@ const Projects = () => {
         },
         {
             id: 9,
-            title: "Weather Application",
+            title: "Ecommerce Platform",
             category: "web",
-            description: "Built geolocation-enabled weather application with API integration and responsive data visualization components.",
-            detailedDescription: "Created weather application integrating 3+ meteorological APIs with 95% data accuracy. Implemented geolocation services reducing location detection time by 2 seconds and responsive visualizations supporting 50+ weather parameters in real-time.",
-            tech: ["React", "API Integration", "CSS3", "Geolocation"],
-            githubLink: "https://github.com/yashasvi9199/weather-app",
+            description: "Implemented full-stack MERN ecommerce platform with JWT authentication and secure payment gateway integration.",
+            detailedDescription: "Built full-stack ecommerce solution processing 500+ daily transactions with JWT-based authentication. Integrated payment gateways achieving 99.2% success rate and optimized MongoDB queries reducing database response time by 45%.",
+            tech: ["React", "Node.js", "MongoDB", "Express", "JWT"],
+            githubLink: "https://github.com/yashasvi9199/ecommerce",
             liveDemo: "#",
             image: "/api/placeholder/400/250"
         },
@@ -134,7 +135,7 @@ const Projects = () => {
             detailedDescription: "Developed a dynamic drag-and-drop interface component featuring smooth transition animations, boundary detection, and responsive positioning logic. Implemented touch and mouse event handling for cross-device compatibility.",
             tech: ["React", "API Integration", "CSS3", "Geolocation"],
             githubLink: "https://github.com/yashasvi9199/drop-panel",
-            liveDemo: "#",
+            liveDemo: "https://yashasvi9199.github.io/drop-panel/",
             image: "/api/placeholder/400/250"
         },
         {
@@ -145,7 +146,7 @@ const Projects = () => {
             detailedDescription: "Built a performant image carousel supporting touch swipes, keyboard navigation, and auto-rotation. Optimized image loading with lazy loading techniques and implemented smooth transition effects.",
             tech: ["React", "API Integration", "CSS3", "Geolocation"],
             githubLink: "https://github.com/yashasvi9199/image-carousel",
-            liveDemo: "#",
+            liveDemo: "https://yashasvi9199.github.io/image-carousel/",
             image: "/api/placeholder/400/250"
         },
         {
@@ -156,7 +157,7 @@ const Projects = () => {
             detailedDescription: "Created an engaging Tic Tac Toe game featuring intelligent AI opponent with multiple difficulty levels. Implemented real-time score tracking, game history, and responsive design with smooth animations.",
             tech: ["React", "API Integration", "CSS3", "Geolocation"],
             githubLink: "https://github.com/yashasvi9199/tic-tac-toe",
-            liveDemo: "#",
+            liveDemo: "https://yashasvi9199.github.io/tic-tac-toe/",
             image: "/api/placeholder/400/250"
         }
     ];
