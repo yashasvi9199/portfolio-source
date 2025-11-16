@@ -70,21 +70,21 @@ const Contact = () => {
             if (apiResult.success) {
                 // 2. Also send to FormSubmit for email backup (optional)
                 console.log('Sending to FormSubmit...');
-                await fetch('https://formsubmit.co/ajax/yashaldiya@gmail.com', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name: formData.name,
-                        email: formData.email,
-                        subject: formData.subject,
-                        message: formData.message,
-                        _captcha: 'false',
-                        _subject: 'New Portfolio Message!'
-                    })
-                });
+                // await fetch('https://formsubmit.co/ajax/yashaldiya@gmail.com', {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //         'Accept': 'application/json'
+                //     },
+                //     body: JSON.stringify({
+                //         name: formData.name,
+                //         email: formData.email,
+                //         subject: formData.subject,
+                //         message: formData.message,
+                //         _captcha: 'false',
+                //         _subject: 'New Portfolio Message!'
+                //     })
+                // });
                 
                 setIsLoading(false);
                 alert('Message sent successfully! 📧✓');
