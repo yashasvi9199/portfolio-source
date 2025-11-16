@@ -8,6 +8,7 @@ import About from './sections/About'
 import Skills from './sections/Skills'
 import Projects from './sections/Projects'
 import Experience from './sections/Experience'
+import Achievements from './sections/Achievements'
 import Contact from './sections/Contact'
 import Navigation from './sections/Navigation'; // Fixed import path
 import Footer from './sections/Footer'; // Fixed import path
@@ -84,8 +85,12 @@ function App() {
         <div ref={setSectionRef(4)}>
           <Experience />
         </div>
-        
+
         <div ref={setSectionRef(5)}>
+          <Achievements/>
+        </div>
+        
+        <div ref={setSectionRef(6)}>
           <Contact />
         </div>
       </main>
