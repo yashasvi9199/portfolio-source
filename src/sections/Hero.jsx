@@ -4,7 +4,7 @@ import '../styles/main.css'
 
 const Hero = () => {
   const textRef = useRef(null)
-  const { displayText: typedText } = useTypewriter('AI Engineer & Quantum Developer', 50, 1000)
+  const { displayText: typedText } = useTypewriter('AI Engineer & Webapp Developer', 50, 1000)
   
 
   return (
