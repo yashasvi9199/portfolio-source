@@ -27,7 +27,7 @@ const Navigation = () => {
       <div className="nav-container">
         <div className="nav-logo">
           <a href="#home" className="logo-link">
-            <span className="logo-text">Yash</span>
+            <span className="logo-text">YH</span>
           </a>
         </div>
 
