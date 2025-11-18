@@ -29,17 +29,32 @@ const Experience = () => {
 
     const experiences = [
         {
-            company: "Self-Employed",
-            position: "Founder & Operator, Food Truck Venture",
+            company: "Skill Development Sabbatical",
+            position: "Independent Full-Stack Developer & Systems Engineer",
+            period: "April 2025 – Present",
+            location: "Remote",
+            achievements: [
+                "Architected and deployed multiple production-grade applications including advanced weather dashboard and adaptive notes platform",
+                "Mastered systems-level engineering through Arch Linux environment management, Git CLI workflows, and terminal-based development",
+                "Developed comprehensive automation suites for Android device management using Bash, Python, ADB, and Fastboot protocols",
+                "Implemented dual-boot system strategy (Arch/Windows) maintaining development flexibility and application compatibility",
+                "Streamlined deployment pipelines using Vercel CLI and configured custom GitHub Pages for optimal project hosting"
+            ],
+            tech: ["React", "Python", "Github", "Vercel", "Deployment", "ADB" , "Data Analysis", "Systems Engineering", "Linux", "Bash", "Fastboot", "Windows"]
+        },
+        {
+            company: "Lazy Corner (Food Truck Venture)",
+            position: "Founder & Operator",
             period: "October 2023 – March 2025",
             location: "Jaipur, India",
             achievements: [
-                "Directed end-to-end operations: menu development, daily procurement, inventory management, financial bookkeeping, and customer service",
-                "Excelled in high-pressure environments managing handwritten order systems and manual ledger tracking",
-                "Generated ₹11,000+ sales over 2 days (₹7,000 net profit) during Navratri 2024 festival, serving ~600 customers",
-                "Transitioned to focus on software engineering skill enhancement following health considerations"
+                "Engineered automated inventory management system with vendor API integration, reducing stock outages by 40%",
+                "Developed QR-based contactless ordering web application with real-time Telegram bot notifications",
+                "Implemented digital token system for queue management during high-volume events, serving 600+ customers efficiently",
+                "Orchestrated record-breaking sales event generating ₹11,000+ revenue (₹7,000 net profit) over 2-day festival period",
+                "Leveraged data analytics for menu optimization and strategic logistics planning near supplier hubs"
             ],
-            tech: ["Operations Management", "Financial Planning", "Customer Service", "Inventory Management"]
+            tech: ["Operations Management", "Financial Planning", "Leadership", "Entrepreneurship", "Strategic Planning", "Problem Solving"]
         },
         {
             company: "Appgallop Pvt. Ltd.",
@@ -47,40 +62,40 @@ const Experience = () => {
             period: "February 2023 – August 2023",
             location: "Jaipur, India",
             achievements: [
-                "Engineered SaaS solutions for sales management, invoicing, and operational workflows",
-                "Developed robust web applications using HTML, CSS, JavaScript, Java, and Visual Studio",
-                "Optimized code architecture and performance by 20%, reduced hardware costs by 7%",
-                "Decreased bug rates by 25% through proactive issue resolution and minimal downtime",
-                "Produced comprehensive user documentation for all developed applications"
+                "Led full-stack development of SaaS billing and subscription management platform using Java, React, and JavaScript",
+                "Engineered critical front-end refactoring achieving 20% performance improvement in data loading and rendering",
+                "Reduced critical bug resolution time by 7% through systematic analysis of persistent technical debt",
+                "Spearheaded jQuery migration initiative across application, improving code consistency and mentoring team members",
+                "Supported Azure DevOps pipeline deployments and contributed to admin panel with multi-level user role management"
             ],
-            tech: ["HTML", "CSS", "JavaScript", "Java", "SaaS", "Visual Studio"]
+            tech: ["Java" , "JavaScript" , "jQuery" , "React" , "SaaS Development" , "API Integration" , "Performance Optimization" , "Full-Stack Development"]
         },
         {
             company: "Amazon Development Center",
             position: "Resolution Specialist",
             period: "September 2020 – January 2023",
-            location: "Jaipur, India",
+            location: "Remote",
             achievements: [
-                "Analyzed and resolved complex technical challenges for internal/external customers",
-                "Created and maintained centralized portals on internal wiki during sales events",
-                "Curated links and ticket-raising functionality to accelerate customer issue resolution",
-                "Enhanced team efficiency through proactive documentation and process optimization initiatives",
-                "Recognized for creating knowledge-sharing websites and promotions portal"
+                "Served as technical escalation point for complex payment gateway, order fulfillment, and system integrity issues",
+                "Architected internal wiki knowledge base serving 14,000+ representatives, reducing average call handle time",
+                "Promoted to Subject Matter Expert (SME), training 7+ teams on advanced troubleshooting and system protocols",
+                "Maintained 88%+ customer satisfaction score as top performer during high-volume sales events",
+                "Developed definitive ticket routing guide streamlining cross-departmental resolution paths"
             ],
-            tech: ["Technical Support", "Knowledge Management", "Process Optimization", "Documentation"]
+            tech: ["Customer Relationship Management (CRM)" , "Technical Support Fundamentals" , "Problem-Solving" , "Communication Skills" , "De-escalation Techniques" , "Quality Assurance"]
         },
         {
             company: "Amazon Development Center",
             position: "Customer Service Associate",
             period: "June 2019 – September 2020",
-            location: "Jaipur, India",
+            location: "Remote",
             achievements: [
-                "Delivered exceptional customer support, resolving inquiries with empathy, accuracy, and diligence",
-                "Received Customer Obsession Award for exceptional performance and workplace impact",
-                "Awarded Trainee of the Batch as top performer among new hires",
+                "Delivered exceptional frontline customer support, mastering Amazon's internal systems and CRM platforms",
+                "Awarded Customer Obsession Award for outstanding performance and positive workplace impact",
+                "Achieved rapid promotion to Resolution Specialist within 16 months based on technical aptitude",
                 "Maintained high customer satisfaction ratings through effective communication"
             ],
-            tech: ["Customer Service", "Problem Solving", "Communication", "Empathy"]
+            tech: ["Customer Service" , "Problem Solving" , "Communication" , "Customer Relationship Management (CRM)", "Empathy"]
         }
     ];
 
