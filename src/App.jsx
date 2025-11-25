@@ -13,7 +13,6 @@ import Contact from './sections/Contact'
 import Navigation from './sections/Navigation'; // Fixed import path
 import Footer from './sections/Footer'; // Fixed import path
 import { useScrollAnimation } from './hooks/useScrollAnimation'
-import './App.css'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
