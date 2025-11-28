@@ -9,8 +9,9 @@ const Projects = () => {
     
     const projectCategories = [
         { id: 'all', name: 'All Projects' },
-        { id: 'edu', name: 'Learning' },
+        { id: 'ai', name: 'AI Apps' },
         { id: 'web', name: 'Web Development' },
+        { id: 'edu', name: 'Learning' },
         { id: 'tools', name: 'Professional Tools' }
     ];
 
@@ -58,9 +59,35 @@ const Projects = () => {
             achievement: "Reduced bug rates by 25% through proactive issue resolution"
         },
 
-        // GitHub Projects
+        // ai based projects
         {
             id: 4,
+            title: "FitLife AI",
+            category: "ai",
+            description: "Built AI-powered health analysis platform generating lifestyle reports, nutrition insights and barcode-based meal breakdown using serverless APIs.",
+            detailedDescription: "AI-powered health assistant that analyzes user metrics against CDC/WHO standards and generates clear lifestyle insights. Supports meal-image calorie detection, barcode nutrition lookup and message-based reminders, all powered by optimized Vercel serverless APIs for fast responses.",
+            tech: ["React", "JavaScript", "CSS3", "AI Integration", "Vercel Serverless", "Cloudinary", "Telegram Bot API"],
+            githubLink: "https://github.com/yashasvi9199/Fitlife-AI",
+            liveDemo: "https://yashasvi9199.github.io/Fitlife-AI/",
+            image: "/api/placeholder/400/250",
+            featured: true
+        },
+        {
+            id: 5,
+            title: "StyleGlow AI",
+            category: "ai",
+            description: "Built AI-enabled portrait analysis tool evaluating appearance, emotions, and aesthetic quality with tailored enhancement suggestions.",
+            detailedDescription: "AI-driven portrait analyzer that interprets emotions, evaluates composition and identifies skin issues from user photos. Delivers quick enhancement suggestions and complementary color guidance through a fast, responsive Tailwind-powered interface backed by Vercel serverless APIs.",
+            tech: ["React", "JavaScript", "Tailwind CSS", "AI Integration", "Vercel Serverless", "Cloudinary"],
+            githubLink: "https://github.com/yashasvi9199/style-glow-ai",
+            liveDemo: "https://yashasvi9199.github.io/style-glow-ai/",
+            image: "/api/placeholder/400/250",
+            featured: true
+        },
+
+        // GitHub Projects
+        {
+            id: 6,
             title: "React Notes Dashboard",
             category: "web",
             description: "Built responsive React notes management system with real-time synchronization and progressive web app capabilities.",
