@@ -13,12 +13,20 @@ import Contact from './sections/Contact'
 import Navigation from './sections/Navigation'; // Fixed import path
 import Footer from './sections/Footer'; // Fixed import path
 import { useScrollAnimation } from './hooks/useScrollAnimation'
+import { useLocation } from 'react-router-dom'
+import { trackPageView } from './utils/analytics'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
   const [progress, setProgress] = useState(0)
   const [showAI, setShowAI] = useState(false)
   const sectionRefs = useScrollAnimation()
+  const location = useLocation()
+
+  useEffect(() => {
+    trackPageView(location.pathname + location.search)
+  }, [location])
+
 
   useEffect(() => {
     const loadAssets = async () => {
@@ -26,12 +34,12 @@ function App() {
       for (let i = 0; i <= steps; i++) {
         await new Promise(resolve => setTimeout(resolve, 300))
         setProgress((i / steps) * 100)
-        
+
         if (i === 3) await import('three')
         if (i === 6) await import('gsap')
       }
       setIsLoading(false)
-      
+
       // Show AI components after main content is loaded
       setTimeout(() => setShowAI(true), 1000)
     }
@@ -51,10 +59,10 @@ function App() {
     <div className="app">
       {/* Three.js Animated Background */}
       <ThreeBackground />
-      
+
       {/* Navigation - FIXED: Added Navigation component */}
       <Navigation />
-      
+
       {/* AI & Interactive Components - Load after main content */}
       {showAI && (
         <>
@@ -62,38 +70,38 @@ function App() {
           <VoiceControl />
         </>
       )}
-      
+
       {/* Main Content Sections */}
       <main className="main-content">
         <div ref={setSectionRef(0)}>
           <Hero />
         </div>
-        
+
         <div ref={setSectionRef(1)}>
           <About />
         </div>
-        
+
         <div ref={setSectionRef(2)}>
           <Skills />
         </div>
-        
+
         <div ref={setSectionRef(3)}>
           <Projects />
         </div>
-        
+
         <div ref={setSectionRef(4)}>
           <Experience />
         </div>
 
         <div ref={setSectionRef(5)}>
-          <Achievements/>
+          <Achievements />
         </div>
-        
+
         <div ref={setSectionRef(6)}>
           <Contact />
         </div>
       </main>
-      
+
       {/* Footer - FIXED: Added Footer component */}
       <Footer />
     </div>
