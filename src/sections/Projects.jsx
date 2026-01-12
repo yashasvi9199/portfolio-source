@@ -6,7 +6,7 @@ const Projects = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const projectsGridRef = useRef(null);
     const [visibleProjects, setVisibleProjects] = useState(new Set());
-    
+
     const projectCategories = [
         { id: 'all', name: 'All Projects' },
         { id: 'ai', name: 'AI Apps' },
@@ -34,7 +34,7 @@ const Projects = () => {
         {
             id: 2,
             title: "Amazon Internal Wiki Systems",
-            category: "tools", 
+            category: "tools",
             description: "Architected scalable knowledge management systems with workflow automation and process optimization for enterprise operations.",
             detailedDescription: "Engineered knowledge management systems used by 5,000+ employees, reducing internal query resolution time by 25%. Automated workflow processes decreased manual interventions by 60% during peak sales events, enhancing operational efficiency across departments.",
             tech: ["Internal Wiki", "Knowledge Management", "Process Optimization", "Documentation"],
@@ -88,6 +88,18 @@ const Projects = () => {
         // GitHub Projects
         {
             id: 6,
+            title: "MatchFind",
+            category: "web",
+            description: "Built sophisticated matchmaking platform with secure authentication, real-time updates, and native Android capabilities using Capacitor.",
+            detailedDescription: "Architected a comprehensive matchmaking application featuring gender-based dynamic theming and smart matching algorithms. Implemented Supabase for secure authentication and real-time data syncing, while leveraging Capacitor to deliver a native Android experience. ",
+            tech: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "Supabase", "Capacitor", "PostgreSQL"],
+            githubLink: "https://github.com/yashasvi9199/MatchFind",
+            liveDemo: "https://yashasvi9199.github.io/MatchFind/",
+            image: "/api/placeholder/400/250",
+            featured: true
+        },
+        {
+            id: 7,
             title: "React Notes Dashboard",
             category: "web",
             description: "Built responsive React notes management system with real-time synchronization and progressive web app capabilities.",
@@ -99,7 +111,7 @@ const Projects = () => {
             featured: true
         },
         {
-            id: 5,
+            id: 8,
             title: "Weather Application",
             category: "web",
             description: "Built geolocation-enabled weather application with API integration and responsive data visualization components.",
@@ -107,11 +119,10 @@ const Projects = () => {
             tech: ["React", "API Integration", "CSS3", "Geolocation"],
             githubLink: "https://github.com/yashasvi9199/weather-app",
             liveDemo: "https://yashasvi9199.github.io/weather-app/",
-            image: "/api/placeholder/400/250",
-            featured: true
+            image: "/api/placeholder/400/250"
         },
         {
-            id: 6,
+            id: 9,
             title: "React.js Projects Collection",
             category: "edu",
             description: "Demonstrated advanced React patterns including hooks, context API, and component composition with optimization.",
@@ -122,7 +133,7 @@ const Projects = () => {
             image: "/api/placeholder/400/250"
         },
         {
-            id: 7,
+            id: 10,
             title: "Python Applications",
             category: "edu",
             description: "Created Python automation tools and system utilities for workflow optimization and development efficiency.",
@@ -133,7 +144,7 @@ const Projects = () => {
             image: "/api/placeholder/400/250"
         },
         {
-            id: 8,
+            id: 11,
             title: "Node.js Learning Projects",
             category: "edu",
             description: "Developed scalable Node.js backend systems with RESTful APIs, middleware, and MongoDB integration.",
@@ -144,7 +155,7 @@ const Projects = () => {
             image: "/api/placeholder/400/250"
         },
         {
-            id: 9,
+            id: 12,
             title: "Ecommerce Platform",
             category: "web",
             description: "Implemented full-stack MERN ecommerce platform with JWT authentication and secure payment gateway integration.",
@@ -155,7 +166,7 @@ const Projects = () => {
             image: "/api/placeholder/400/250"
         },
         {
-            id: 10,
+            id: 13,
             title: "Drop Panel",
             category: "web",
             description: "Built interactive drag-and-drop panel system with smooth animations and responsive positioning",
@@ -166,7 +177,7 @@ const Projects = () => {
             image: "/api/placeholder/400/250"
         },
         {
-            id: 11,
+            id: 14,
             title: "Image Carousel",
             category: "web",
             description: "Engineered responsive image carousel with touch gestures and auto-rotation features",
@@ -177,7 +188,7 @@ const Projects = () => {
             image: "/api/placeholder/400/250"
         },
         {
-            id: 12,
+            id: 15,
             title: "Tic Tac Toe",
             category: "web",
             description: "Developed interactive Tic Tac Toe game with smart opponent and score tracking",
@@ -189,8 +200,8 @@ const Projects = () => {
         }
     ];
 
-    const filteredProjects = activeFilter === 'all' 
-        ? projects 
+    const filteredProjects = activeFilter === 'all'
+        ? projects
         : projects.filter(project => project.category === activeFilter);
 
     // Pagination logic - only for 'all' filter
@@ -198,7 +209,7 @@ const Projects = () => {
     const projectsPerRow = window.innerWidth >= 1200 ? 3 : window.innerWidth >= 768 ? 2 : 1;
     const projectsPerPage = projectsPerRow * 2; // 2 rows
     const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
-    const currentProjects = showPagination 
+    const currentProjects = showPagination
         ? filteredProjects.slice((currentPage - 1) * projectsPerPage, currentPage * projectsPerPage)
         : filteredProjects;
 
@@ -214,7 +225,7 @@ const Projects = () => {
                 setCurrentPage(1);
             }
         };
-        
+
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, [activeFilter]);
@@ -237,7 +248,7 @@ const Projects = () => {
                     showAllProjects();
                 }
             },
-            { 
+            {
                 threshold: 0.1,
                 rootMargin: '50px 0px 50px 0px'
             }
@@ -263,7 +274,7 @@ const Projects = () => {
                 <p className="projects-subtitle">
                     Building scalable solutions with modern web technologies and enterprise tools
                 </p>
-                
+
                 <div className="projects-filter">
                     {projectCategories.map(category => (
                         <button
@@ -283,9 +294,9 @@ const Projects = () => {
 
                 <div ref={projectsGridRef} className="projects-grid">
                     {currentProjects.map((project, index) => (
-                        <ProjectCard 
-                            key={project.id} 
-                            project={project} 
+                        <ProjectCard
+                            key={project.id}
+                            project={project}
                             isVisible={visibleProjects.has(index)}
                         />
                     ))}
@@ -293,19 +304,19 @@ const Projects = () => {
 
                 {showPagination && totalPages > 1 && (
                     <div className="pagination-controls">
-                        <button 
+                        <button
                             className="pagination-btn"
                             onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                             disabled={currentPage === 1}
                         >
                             <i className="fas fa-chevron-left"></i>
                         </button>
-                        
+
                         <span className="pagination-info">
                             Page {currentPage} of {totalPages}
                         </span>
-                        
-                        <button 
+
+                        <button
                             className="pagination-btn"
                             onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                             disabled={currentPage === totalPages}
@@ -330,7 +341,7 @@ const ProjectCard = ({ project, isVisible }) => {
     };
 
     return (
-        <div 
+        <div
             className={`project-card ${project.featured ? 'featured' : ''} ${project.professional ? 'professional' : ''} ${isVisible ? 'visible' : ''} ${isFlipped ? 'flipped' : ''}`}
             onClick={handleFlip}
         >
@@ -338,11 +349,11 @@ const ProjectCard = ({ project, isVisible }) => {
                 <div className="card-front">
                     {showBadge && project.professional && <div className="professional-badge">Professional</div>}
                     {showBadge && project.featured && !project.professional && <div className="featured-badge">Featured</div>}
-                    
+
                     <div className="project-content">
                         <h3 className="project-title">{project.title}</h3>
                         <p className="project-description">{project.description}</p>
-                        
+
                         <div className="project-tech">
                             {project.tech.map((tech, index) => (
                                 <span key={index} className="tech-tag">{tech}</span>
@@ -358,7 +369,7 @@ const ProjectCard = ({ project, isVisible }) => {
                 <div className="card-back">
                     <div className="back-content">
                         <p className="back-description">{project.detailedDescription}</p>
-                        
+
                         {project.achievement && (
                             <div className="project-achievement">
                                 <i className="fas fa-trophy"></i>
