@@ -78,7 +78,7 @@ const Projects = () => {
     }, [currentProjects.length, activeFilter]);
 
     return (
-        <section id="projects" className={`projects-section`}>
+        <section className={`projects-section`}>
             <div className="projects-container">
                 <h2 className="projects-title">Featured Projects</h2>
                 <p className="projects-subtitle">

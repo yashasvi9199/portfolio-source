@@ -40,7 +40,7 @@ const Experience = () => {
                 "Implemented dual-boot system strategy (Arch/Windows) maintaining development flexibility and application compatibility",
                 "Streamlined deployment pipelines using Vercel CLI and configured custom GitHub Pages for optimal project hosting"
             ],
-            tech: ["React", "Python", "Github", "Vercel", "Deployment", "ADB" , "Data Analysis", "Systems Engineering", "Linux", "Bash", "Fastboot", "Windows"]
+            tech: ["React", "Python", "Github", "Vercel", "Deployment", "ADB", "Data Analysis", "Systems Engineering", "Linux", "Bash", "Fastboot", "Windows"]
         },
         {
             company: "Lazy Corner (Food Truck Venture)",
@@ -68,7 +68,7 @@ const Experience = () => {
                 "Spearheaded jQuery migration initiative across application, improving code consistency and mentoring team members",
                 "Supported Azure DevOps pipeline deployments and contributed to admin panel with multi-level user role management"
             ],
-            tech: ["Java" , "JavaScript" , "jQuery" , "React" , "SaaS Development" , "API Integration" , "Performance Optimization" , "Full-Stack Development"]
+            tech: ["Java", "JavaScript", "jQuery", "React", "SaaS Development", "API Integration", "Performance Optimization", "Full-Stack Development"]
         },
         {
             company: "Amazon Development Center",
@@ -82,7 +82,7 @@ const Experience = () => {
                 "Maintained 88%+ customer satisfaction score as top performer during high-volume sales events",
                 "Developed definitive ticket routing guide streamlining cross-departmental resolution paths"
             ],
-            tech: ["Customer Relationship Management (CRM)" , "Technical Support Fundamentals" , "Problem-Solving" , "Communication Skills" , "De-escalation Techniques" , "Quality Assurance"]
+            tech: ["Customer Relationship Management (CRM)", "Technical Support Fundamentals", "Problem-Solving", "Communication Skills", "De-escalation Techniques", "Quality Assurance"]
         },
         {
             company: "Amazon Development Center",
@@ -95,12 +95,12 @@ const Experience = () => {
                 "Achieved rapid promotion to Resolution Specialist within 16 months based on technical aptitude",
                 "Maintained high customer satisfaction ratings through effective communication"
             ],
-            tech: ["Customer Service" , "Problem Solving" , "Communication" , "Customer Relationship Management (CRM)", "Empathy"]
+            tech: ["Customer Service", "Problem Solving", "Communication", "Customer Relationship Management (CRM)", "Empathy"]
         }
     ];
 
     return (
-        <section id="experience" ref={experienceRef} className={`experience-section`} >
+        <section ref={experienceRef} className={`experience-section`} >
             <div className="experience-container">
                 <h2 className="experience-title">
                     Professional <span className="gradient-text">Journey</span>

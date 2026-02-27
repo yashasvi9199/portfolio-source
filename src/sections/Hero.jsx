@@ -5,11 +5,11 @@ import '../styles/main.css'
 const Hero = () => {
   const textRef = useRef(null)
   const { displayText: typedText } = useTypewriter('AI Engineer & Webapp Developer', 50, 1000)
-  
+
 
   return (
-    <section id='home' className={`hero-section`} style={{
-      minHeight: '100vh',
+    <section className={`hero-section`} style={{
+      height: '100vh',
       display: 'flex',
       alignItems: 'center',
       position: 'relative',
@@ -31,7 +31,7 @@ const Hero = () => {
           }}>
             Yash Haldiya
           </h1>
-          
+
           <h2 style={{
             marginBottom: '2rem',
             fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
@@ -41,7 +41,7 @@ const Hero = () => {
           }}>
             {typedText}
           </h2>
-          
+
           <p style={{
             marginBottom: '3rem',
             fontSize: '1.2rem',
@@ -51,10 +51,10 @@ const Hero = () => {
             lineHeight: '1.6',
             color: '#888'
           }}>
-            Pushing the boundaries of web technology with cutting-edge AI, 
+            Pushing the boundaries of web technology with cutting-edge AI,
             quantum-inspired interfaces, and immersive digital experiences.
           </p>
-          
+
           <div style={{
             display: 'flex',
             gap: '3rem',
@@ -63,16 +63,16 @@ const Hero = () => {
             // paddingLeft: '21rem'
           }}>
             <a href="#projects">
-            <button className="btn btn-primary interactive">
-              Explore My Work
-            </button></a>
+              <button className="btn btn-primary interactive">
+                Explore My Work
+              </button></a>
             <a href="#contact">
-            <button className="btn btn-secondary interactive">
-              Contact Me
-            </button></a>
+              <button className="btn btn-secondary interactive">
+                Contact Me
+              </button></a>
           </div>
         </div>
-        
+
         {/* <div className="scroll-indicator" style={{
           position: 'absolute',
           bottom: '2rem',
@@ -94,24 +94,24 @@ const Hero = () => {
         </div> */}
       </div>
       <div className="scroll-indicator" style={{
-          position: 'absolute',
-          bottom: '2rem',
-          left: '51%',
-          transform: 'translateX(-50%)',
-          textAlign: 'center'
-        }}>
-          <div style={{
-            width: '2px',
-            height: '40px',
-            background: 'linear-gradient(to bottom, #6c63ff, transparent)',
-            margin: '0 auto 0.5rem',
-            animation: 'float 2s ease-in-out infinite'
-          }} />
-          <span style={{
-            color: '#888',
-            fontSize: '0.9rem'
-          }}>Scroll to explore</span>
-        </div>
+        position: 'absolute',
+        bottom: '2rem',
+        left: '51%',
+        transform: 'translateX(-50%)',
+        textAlign: 'center'
+      }}>
+        <div style={{
+          width: '2px',
+          height: '40px',
+          background: 'linear-gradient(to bottom, #6c63ff, transparent)',
+          margin: '0 auto 0.5rem',
+          animation: 'float 2s ease-in-out infinite'
+        }} />
+        <span style={{
+          color: '#888',
+          fontSize: '0.9rem'
+        }}>Scroll to explore</span>
+      </div>
     </section>
   )
 }

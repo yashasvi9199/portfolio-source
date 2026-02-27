@@ -8,16 +8,16 @@ const Skills = () => {
 
   const portfolioSkills = {
     frontend: [
-      "HTML5", "CSS3", "JavaScript (ES6+)", "React.js", "jQuery", 
+      "HTML5", "CSS3", "JavaScript (ES6+)", "React.js", "jQuery",
       "Redux", "Bootstrap", "Vite", "GSAP", "Framer Motion"
     ],
     backend: [
-      "Node.js", "Python", "Java", "JSP", "REST APIs", 
+      "Node.js", "Python", "Java", "JSP", "REST APIs",
       "MySQL", "MongoDB", "Mongoose", "Hibernate"
     ],
     tools: [
       "Git", "GitHub", "GitLab", "Bitbucket", "npm", "pip",
-      "Visual Studio Code", "Postman", "Chrome DevTools", 
+      "Visual Studio Code", "Postman", "Chrome DevTools",
       "Jira", "Notion", "Obsidian"
     ],
     deployment: [
@@ -30,7 +30,7 @@ const Skills = () => {
 
   const categoryColors = {
     frontend: '#667eea',
-    backend: '#f093fb', 
+    backend: '#f093fb',
     tools: '#4facfe',
     deployment: '#43e97b',
     mobileSystems: '#fa709a'
@@ -84,7 +84,7 @@ const Skills = () => {
   }, []);
 
   return (
-    <section id="skills" ref={skillsRef} className="skills-section">
+    <section ref={skillsRef} className="skills-section">
       <div className="skills-container">
         <h2 className="skills-title">
           Technical Skills
@@ -98,7 +98,7 @@ const Skills = () => {
                 key={category}
                 className={`category-btn ${activeCategory === category ? 'active' : ''}`}
                 onClick={() => setActiveCategory(category)}
-                style={{ 
+                style={{
                   '--category-color': categoryColors[category],
                   '--category-gradient': `linear-gradient(135deg, ${categoryColors[category]}, ${categoryColors[category]}99)`
                 }}
@@ -112,9 +112,9 @@ const Skills = () => {
 
           {/* Right Content - Skills Tile */}
           <div className="skills-content">
-            <div 
+            <div
               className="skills-tile"
-              style={{ 
+              style={{
                 '--category-color': categoryColors[activeCategory],
                 '--category-gradient': `linear-gradient(135deg, ${categoryColors[activeCategory]}, ${categoryColors[activeCategory]}99)`
               }}

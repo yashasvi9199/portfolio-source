@@ -44,7 +44,7 @@ const Achievements = () => {
   };
 
   return (
-    <section id="achievements" className="achievements-section" style={{
+    <section className="achievements-section" style={{
       background: 'transparent',
       padding: '5rem 0'
     }}>
@@ -60,7 +60,7 @@ const Achievements = () => {
         }}>
           Awards & Achievements
         </h2>
-        
+
         <p style={{
           textAlign: 'center',
           fontSize: '1.2rem',
@@ -202,7 +202,7 @@ const Achievements = () => {
               >
                 ×
               </button>
-              
+
               <h3 style={{
                 color: '#fff',
                 textAlign: 'center',
@@ -213,7 +213,7 @@ const Achievements = () => {
               }}>
                 {selectedAchievement.title}
               </h3>
-              
+
               <div style={{
                 textAlign: 'center',
                 color: '#b0b0b0',
@@ -222,8 +222,8 @@ const Achievements = () => {
                 {selectedAchievement.issuer} • {selectedAchievement.year}
               </div>
 
-              <img 
-                src={selectedAchievement.certificate} 
+              <img
+                src={selectedAchievement.certificate}
                 alt={`${selectedAchievement.title} Certificate`}
                 style={{
                   maxWidth: '100%',
@@ -232,7 +232,7 @@ const Achievements = () => {
                   border: '2px solid rgba(255, 255, 255, 0.1)'
                 }}
               />
-              
+
               <div style={{
                 textAlign: 'center',
                 marginTop: '1.5rem',

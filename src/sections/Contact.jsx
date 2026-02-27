@@ -11,7 +11,7 @@ const Contact = () => {
         message: ''
     });
     const [isLoading, setIsLoading] = useState(false);
-    
+
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
@@ -43,16 +43,16 @@ const Contact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-        
+
         // Your secure Vercel API endpoint
         const API_URL = 'https://portfolio-api-rust-nine.vercel.app/api/send-telegram';
-        
+
         try {
             // 1. Send to your secure Vercel API (Telegram)
             console.log('Sending to Vercel API...');
             const apiResponse = await fetch(API_URL, {
                 method: 'POST',
-                headers: { 
+                headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -62,11 +62,11 @@ const Contact = () => {
                     message: formData.message
                 })
             });
-            
+
             console.log('API Response status:', apiResponse.status);
             const apiResult = await apiResponse.json();
             console.log('API Result:', apiResult);
-            
+
             if (apiResult.success) {
                 // 2. Also send to FormSubmit for email backup (optional)
                 console.log('Sending to FormSubmit...');
@@ -85,7 +85,7 @@ const Contact = () => {
                 //         _subject: 'New Portfolio Message!'
                 //     })
                 // });
-                
+
                 setIsLoading(false);
                 alert('Message sent successfully! 📧✓');
                 setFormData({ name: '', email: '', subject: '', message: '' });
@@ -128,7 +128,7 @@ const Contact = () => {
     ];
 
     return (
-        <section id="contact" ref={contactRef} className={`contact-section`}>
+        <section ref={contactRef} className={`contact-section`}>
             <div className="contact-container">
                 <h2 className="contact-title">
                     Get In <span className="gradient-text">Touch</span>
@@ -141,7 +141,7 @@ const Contact = () => {
                     <div className="contact-info">
                         <h3 className="info-title">Let's Connect</h3>
                         <p className="info-description">
-                            I'm always interested in new opportunities, whether it's a freelance project, 
+                            I'm always interested in new opportunities, whether it's a freelance project,
                             collaboration, or full-time role. Don't hesitate to reach out!
                         </p>
 
@@ -235,8 +235,8 @@ const Contact = () => {
                                 ></textarea>
                             </div>
 
-                            <button 
-                                type="submit" 
+                            <button
+                                type="submit"
                                 className="submit-button"
                                 disabled={isLoading}
                             >
@@ -254,7 +254,7 @@ const Contact = () => {
                             </button>
                         </form>
                     </div>
-                </div> 
+                </div>
             </div>
         </section>
     );
