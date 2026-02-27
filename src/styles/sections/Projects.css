@@ -96,10 +96,10 @@
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(var(--item-count, 3), minmax(300px, 1fr));
+    grid-template-columns: repeat(var(--item-count, 3), minmax(380px, 1fr));
     gap: 2.5rem;
     padding: 1rem 0;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     justify-content: center;
 }
@@ -343,10 +343,10 @@
 /* Responsive Design */
 @media (max-width: 1200px) and (min-width: 769px) {
     .projects-grid {
-        grid-template-columns: repeat(var(--item-count, 2), minmax(300px, 1fr));
+        grid-template-columns: repeat(var(--item-count, 2), minmax(340px, 1fr));
         justify-content: center;
         gap: 2rem;
-        max-width: 800px;
+        max-width: 900px;
         margin: 0 auto;
     }
 }

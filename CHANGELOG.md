@@ -2,6 +2,10 @@
 
 |
 
+## 1.1.2
+
+- vibe: Broadened project cards — grid max-width 1200→1400px, card min-width 300→380px (desktop) and 300→340px (tablet).
+
 ## 1.1.1
 
 - fix: Refined section heights and paddings to fit strictly within 100vh.
