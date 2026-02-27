@@ -1,10 +1,11 @@
 .experience-section {
-    padding: 6rem 0;
+    padding: 0;
     background: transparent;
     color: white;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     position: relative;
     overflow: hidden;
 }
@@ -44,10 +45,8 @@
 }
 
 .experience-content {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 3rem;
-    align-items: start;
+    display: block;
+    width: 100%;
 }
 
 .timeline-tabs {
@@ -106,7 +105,7 @@
 .experience-item {
     background: rgba(255, 255, 255, 0.03);
     border-radius: 20px;
-    padding: 2.5rem;
+    padding: 2rem;
     border: 1px solid rgba(108, 99, 255, 0.2);
     backdrop-filter: blur(10px);
     display: none;
@@ -126,8 +125,8 @@
 }
 
 .experience-header {
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
     border-bottom: 1px solid rgba(108, 99, 255, 0.3);
 }
 
@@ -178,7 +177,7 @@
 }
 
 .achievements {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .achievements h4 {
@@ -196,8 +195,8 @@
 .achievements li {
     position: relative;
     padding-left: 1.5rem;
-    margin-bottom: 0.8rem;
-    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
     color: #e0e0e0;
 }
 
@@ -264,10 +263,6 @@
 }
 
 @media (max-width: 768px) {
-    .experience-section {
-        padding: 4rem 0;
-    }
-    
     .experience-container {
         padding: 0 1.5rem;
     }
