@@ -2,6 +2,14 @@
 
 # version 1.0
 
+# version 1.1
+
+## 1.1.0
+
+- vibe: Initialized `.agent-persistence` for session state tracking.
+- vibe: Updated `.gitignore` to exclude agent persistence and test artifacts.
+- feature: Bootstrapped project MVP analysis and verified dependencies.
+
 ## 1.0.4
 
 - fix: Section content horizontally centered in all fullpage sections (added justify-content + width: 100%)
