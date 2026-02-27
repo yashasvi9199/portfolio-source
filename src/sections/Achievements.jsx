@@ -46,12 +46,16 @@ const Achievements = () => {
   return (
     <section className="achievements-section" style={{
       background: 'transparent',
-      padding: '5rem 0'
+      padding: '2rem 0',
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center'
     }}>
-      <div className="container">
+      <div className="container" style={{ padding: '0 2rem', margin: '0 auto', maxWidth: '1200px' }}>
         <h2 style={{
           textAlign: 'center',
-          marginBottom: '3rem',
+          marginBottom: '1.5rem',
           background: 'linear-gradient(135deg, #6c63ff, #00ff88)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
@@ -63,9 +67,9 @@ const Achievements = () => {
 
         <p style={{
           textAlign: 'center',
-          fontSize: '1.2rem',
+          fontSize: '1.1rem',
           color: '#888',
-          marginBottom: '4rem',
+          marginBottom: '2rem',
           maxWidth: '600px',
           marginLeft: 'auto',
           marginRight: 'auto',
@@ -76,9 +80,9 @@ const Achievements = () => {
 
         <div className="achievements-grid" style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '2rem',
-          marginBottom: '4rem'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '1.5rem',
+          marginBottom: '0'
         }}>
           {achievements.map((achievement) => (
             <div
@@ -87,13 +91,16 @@ const Achievements = () => {
               style={{
                 background: 'rgba(255, 255, 255, 0.05)',
                 borderRadius: '20px',
-                padding: '2rem',
+                padding: '1.5rem',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
                 backdropFilter: 'blur(20px)',
                 transition: 'all 0.3s ease',
                 cursor: 'pointer',
                 position: 'relative',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between'
               }}
               onClick={() => setSelectedAchievement(achievement)}
             >
@@ -134,10 +141,11 @@ const Achievements = () => {
                 {achievement.issuer}
               </div>
 
-              <p style={{
+              <p className="achievement-desc" style={{
                 color: '#b0b0b0',
-                lineHeight: '1.6',
-                marginBottom: '1.5rem'
+                lineHeight: '1.4',
+                marginBottom: '1rem',
+                fontSize: '0.95rem'
               }}>
                 {achievement.description}
               </p>
