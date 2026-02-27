@@ -22,10 +22,11 @@ const SECTIONS = [
   { id: 'home', Component: Hero },
   { id: 'about', Component: About },
   { id: 'skills', Component: Skills },
-  { id: 'projects', Component: Projects, overflow: true },
-  { id: 'experience', Component: Experience, overflow: true },
-  { id: 'achievements', Component: Achievements, overflow: true },
-  { id: 'contact', Component: Contact, overflow: true },
+  { id: 'projects', Component: Projects },
+  { id: 'experience', Component: Experience },
+  { id: 'achievements', Component: Achievements },
+  { id: 'contact', Component: Contact },
+  // { id: 'footer', Component: Footer }
 ];
 
 function App() {
@@ -112,19 +113,16 @@ function App() {
 
       <div ref={sectionWrapperRef} className="fp-wrapper">
         {SECTIONS.map(({ id, Component, overflow }, index) => {
-          const isLast = index === SECTIONS.length - 1;
           const classes = [
             'fp-section',
             currentSection === index ? 'fp-visible' : '',
             overflow ? 'fp-overflow' : '',
+            id === 'footer' ? 'fp-footer' : ''
           ].filter(Boolean).join(' ');
 
           return (
             <div key={id} id={id} className={classes}>
-              <div>
-                <Component isActive={currentSection === index} />
-                {isLast && <Footer />}
-              </div>
+              <Component isActive={currentSection === index} />
             </div>
           );
         })}
