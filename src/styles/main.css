@@ -222,3 +222,5 @@ button {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(45deg, #7b73ff, #5a54c5);
 }
+@media (max-height: 800px) { .achievement-desc { display: none !important; } }
+@media (max-width: 480px) { .achievement-desc { display: none !important; } }
