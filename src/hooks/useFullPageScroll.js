@@ -102,7 +102,7 @@ export const useFullPageScroll = (totalSections) => {
             tolerance: 10,
             onDown: goNext,
             onUp: goPrev,
-            preventDefault: true,
+            preventDefault: false,
         });
 
         // Keyboard navigation
