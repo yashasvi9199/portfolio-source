@@ -1,16 +1,57 @@
-# React + Vite
+# Yashasvi | AI & Quantum Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance, immersive portfolio built with **React 18**, **GSAP**, and **Three.js**. This project features a custom full-page scroll system, integrated AI chatbot, and interactive 3D backgrounds.
 
-Currently, two official plugins are available:
+## 🚀 Technologies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Core**: React 18, Vite
+- **Animation**: GSAP (Observer, ScrollTrigger)
+- **3D Graphics**: Three.js, p5.js
+- **Audio/Voice**: Tone.js, Web Speech API
+- **AI**: Custom internal knowledge system integration
+- **Styling**: Vanilla CSS (Premium Vibe Design)
+- **Testing**: Playwright E2E
 
-## React Compiler
+## ✨ Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Fullpage Snap Scroll**: Custom GSAP-powered navigation with scroll hijacking.
+- **Quantum Loader**: Immersive asset preloading system.
+- **AI Assistant**: Context-aware chatbot for portfolio inquiries.
+- **Voice Navigation**: Hands-free control via speech recognition.
+- **Responsive Design**: Intelligent overflow management for mobile/desktop parity.
 
-## Expanding the ESLint configuration
+## 🛠️ Development
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Setup
+
+```bash
+npm install
+```
+
+### Run Locally
+
+```bash
+npm run dev
+```
+
+### Testing
+
+```bash
+# Run all E2E tests
+npx playwright test
+
+# Run interactive features tests
+npx playwright test tests/interactive.test.js
+```
+
+## 📈 Deployment
+
+Built for production using Vite:
+
+```bash
+npm run build
+```
+
+---
+
+_Maintained under the Chief Architect Ruleset - 1.1.0_
