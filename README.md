@@ -18,7 +18,8 @@ A high-performance, immersive portfolio built with **React 18**, **GSAP**, and *
 - **Quantum Loader**: Immersive asset preloading system.
 - **AI Assistant**: Context-aware chatbot for portfolio inquiries.
 - **Voice Navigation**: Hands-free control via speech recognition.
-- **Responsive Design**: Intelligent overflow management for mobile/desktop parity.
+- **Achievements Hub**: Interactive showcase of awards and recognitions.
+- **100vh Snapshot Design**: Strictly constrained layouts for pixel-perfect fullpage snapping.
 
 ## 🛠️ Development
 
@@ -54,4 +55,4 @@ npm run build
 
 ---
 
-_Maintained under the Chief Architect Ruleset - 1.1.0_
+_Maintained under the Chief Architect Ruleset - 1.1.1_
