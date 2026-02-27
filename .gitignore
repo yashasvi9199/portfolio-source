@@ -50,3 +50,4 @@ jspm_packages/
 # Yarn Integrity file
 .yarn-integrity
 test-results/.last-run.json
+.agent-persistence
