@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../styles/sections/Projects.css';
+import '../styles/sections/shared-timeline.css';
 import projectsData from '../data/projects.json';
 
 const { projectCategories, projects } = projectsData;
@@ -14,16 +15,13 @@ const Projects = () => {
         ? projects
         : projects.filter(project => project.category === activeFilter);
 
-    // Pagination logic - only for 'all' filter
-    const showPagination = activeFilter === 'all';
+    // Pagination logic - 3 projects on desktop (3x1), 2 on tablet (2x1), 1 on mobile (1x1)
     const projectsPerRow = window.innerWidth >= 1200 ? 3 : window.innerWidth >= 768 ? 2 : 1;
-    const projectsPerPage = projectsPerRow * 2; // 2 rows
-    const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
-    const currentProjects = showPagination
-        ? filteredProjects.slice((currentPage - 1) * projectsPerPage, currentPage * projectsPerPage)
-        : filteredProjects;
+    const projectsPerPage = projectsPerRow; // 1 row
+    const totalPages = Math.max(1, Math.ceil(filteredProjects.length / projectsPerPage));
+    const currentProjects = filteredProjects.slice((currentPage - 1) * projectsPerPage, currentPage * projectsPerPage);
 
-    // Reset to page 1 when filter changes or window resizes
+    // Reset to page 1 when filter changes
     useEffect(() => {
         setCurrentPage(1);
     }, [activeFilter]);
@@ -31,9 +29,7 @@ const Projects = () => {
     // Recalculate on window resize
     useEffect(() => {
         const handleResize = () => {
-            if (activeFilter === 'all') {
-                setCurrentPage(1);
-            }
+            setCurrentPage(1);
         };
 
         window.addEventListener('resize', handleResize);
@@ -43,6 +39,9 @@ const Projects = () => {
     useEffect(() => {
         const gridElement = projectsGridRef.current;
         if (!gridElement) return;
+
+        // Reset visibility when page or filter changes
+        setVisibleProjects(new Set());
 
         let timeoutId;
         let observer;
@@ -65,7 +64,7 @@ const Projects = () => {
         );
 
         observer.observe(gridElement);
-        timeoutId = setTimeout(showAllProjects, 500);
+        timeoutId = setTimeout(showAllProjects, 300); // reduced timeout slightly
 
         return () => {
             if (observer) {
@@ -75,34 +74,13 @@ const Projects = () => {
                 clearTimeout(timeoutId);
             }
         };
-    }, [currentProjects.length, activeFilter]);
+    }, [currentProjects.length, activeFilter, currentPage]);
 
     return (
         <section className={`projects-section`}>
             <div className="projects-container">
-                <h2 className="projects-title">Featured Projects</h2>
-                <p className="projects-subtitle">
-                    Building scalable solutions with modern web technologies and enterprise tools
-                </p>
 
-                <div className="projects-filter">
-                    {projectCategories.map(category => (
-                        <button
-                            key={category.id}
-                            className={`filter-btn ${activeFilter === category.id ? 'active' : ''}`}
-                            onClick={() => setActiveFilter(category.id)}
-                        >
-                            {category.name}
-                        </button>
-                    ))}
-                </div>
-
-                <div className="flip-hint">
-                    <i className="fas fa-hand-pointer"></i>
-                    Click on project cards to flip and see more details
-                </div>
-
-                <div ref={projectsGridRef} className="projects-grid">
+                <div ref={projectsGridRef} className="projects-grid" style={{ "--item-count": currentProjects.length }}>
                     {currentProjects.map((project, index) => (
                         <ProjectCard
                             key={project.id}
@@ -112,7 +90,7 @@ const Projects = () => {
                     ))}
                 </div>
 
-                {showPagination && totalPages > 1 && (
+                {totalPages > 1 && (
                     <div className="pagination-controls">
                         <button
                             className="pagination-btn"
@@ -135,6 +113,22 @@ const Projects = () => {
                         </button>
                     </div>
                 )}
+            </div>
+
+            <div className="bottom-timeline-container">
+                <div className="timeline-track">
+                    <div className="timeline-line"></div>
+                    {projectCategories.map((category) => (
+                        <div
+                            key={category.id}
+                            className={`timeline-item ${activeFilter === category.id ? 'active' : ''}`}
+                            onClick={() => setActiveFilter(category.id)}
+                        >
+                            <span className="timeline-label">{category.name}</span>
+                            <div className="timeline-notch"></div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </section>
     );
