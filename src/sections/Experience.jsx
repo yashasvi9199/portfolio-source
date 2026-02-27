@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import '../styles/sections/Experience.css';
+import '../styles/sections/shared-timeline.css';
 
 const Experience = () => {
     const experienceRef = useRef(null);
@@ -102,26 +103,7 @@ const Experience = () => {
     return (
         <section ref={experienceRef} className={`experience-section`} >
             <div className="experience-container">
-                <h2 className="experience-title">
-                    Professional <span className="gradient-text">Journey</span>
-                </h2>
-                <p className="experience-subtitle">
-                    My path from customer service to software engineering, building expertise with every role
-                </p>
-
                 <div className="experience-content">
-                    <div className="timeline-tabs">
-                        {experiences.map((exp, index) => (
-                            <button
-                                key={index}
-                                className={`tab-button ${activeTab === index ? 'active' : ''}`}
-                                onClick={() => setActiveTab(index)}
-                            >
-                                <span className="tab-period">{exp.period.split(' – ')[0]}</span>
-                                <span className="tab-company">{exp.company}</span>
-                            </button>
-                        ))}
-                    </div>
 
                     <div className="experience-details">
                         {experiences.map((exp, index) => (
@@ -158,6 +140,26 @@ const Experience = () => {
                             </div>
                         ))}
                     </div>
+                </div>
+            </div>
+
+            <div className="bottom-timeline-container">
+                <div className="timeline-track">
+                    <div className="timeline-line"></div>
+                    {experiences.map((exp, index) => {
+                        const match = exp.period.match(/\d{4}/);
+                        const year = match ? match[0] : exp.period.split(' – ')[0];
+                        return (
+                            <div
+                                key={index}
+                                className={`timeline-item ${activeTab === index ? 'active' : ''}`}
+                                onClick={() => setActiveTab(index)}
+                            >
+                                <span className="timeline-label">{year}</span>
+                                <div className="timeline-notch"></div>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </section>
