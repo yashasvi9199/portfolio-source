@@ -1,0 +1,182 @@
+/* ============================================
+   Full-Page Scroll System
+   ============================================ */
+
+/* Prevent native scroll on body when fullpage is active */
+html.fp-active,
+html.fp-active body {
+  overflow: hidden;
+  height: 100vh;
+  position: fixed;
+  width: 100%;
+}
+
+/* Section wrapper — holds all sections stacked vertically */
+.fp-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  will-change: transform;
+  z-index: 1;
+}
+
+/* Individual section — each takes full viewport */
+.fp-section {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Allow internal scrolling on content-heavy sections */
+.fp-section.fp-overflow {
+  align-items: flex-start;
+}
+
+.fp-section.fp-overflow > * {
+  max-height: 100vh;
+  overflow-y: auto;
+  width: 100%;
+}
+
+/* Footer section — auto height, not full viewport */
+.fp-section.fp-footer {
+  height: auto;
+  min-height: unset;
+  align-items: stretch;
+}
+
+/* ============================================
+   Section Entrance Animations
+   ============================================ */
+.fp-section .fp-animate {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fp-section.fp-visible .fp-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children */
+.fp-section.fp-visible .fp-animate:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.fp-section.fp-visible .fp-animate:nth-child(3) {
+  transition-delay: 0.2s;
+}
+.fp-section.fp-visible .fp-animate:nth-child(4) {
+  transition-delay: 0.3s;
+}
+.fp-section.fp-visible .fp-animate:nth-child(5) {
+  transition-delay: 0.4s;
+}
+
+/* ============================================
+   Dot Navigation
+   ============================================ */
+.fp-dot-nav {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.fp-dot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  outline: none;
+}
+
+.fp-dot-inner {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  border: 2px solid transparent;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.fp-dot:hover .fp-dot-inner {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.2);
+}
+
+.fp-dot.active .fp-dot-inner {
+  background: transparent;
+  border-color: #6c63ff;
+  box-shadow:
+    0 0 12px rgba(108, 99, 255, 0.5),
+    inset 0 0 6px rgba(108, 99, 255, 0.4);
+  transform: scale(1.3);
+}
+
+.fp-dot-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  transform: translateX(8px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.fp-dot:hover .fp-dot-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fp-dot.active .fp-dot-label {
+  color: #6c63ff;
+}
+
+/* ============================================
+   Counter-Up Animation
+   ============================================ */
+.counter-value {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  min-width: 3ch;
+}
+
+/* ============================================
+   Mobile Adjustments
+   ============================================ */
+@media (max-width: 768px) {
+  .fp-dot-nav {
+    right: 10px;
+    gap: 12px;
+  }
+
+  .fp-dot-inner {
+    width: 8px;
+    height: 8px;
+  }
+
+  .fp-dot-label {
+    display: none;
+  }
+}
