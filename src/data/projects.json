@@ -99,7 +99,7 @@
       "featured": true
     },
     {
-      "id": 16,
+      "id": 8,
       "title": "Scroll Animation",
       "category": "web",
       "description": "A library of high-performance scroll-triggered animations and UI interactions.",
@@ -110,95 +110,7 @@
       "image": "/api/placeholder/400/250"
     },
     {
-      "id": 8,
-      "title": "Weather Application",
-      "category": "web",
-      "description": "Built geolocation-enabled weather application with API integration and responsive data visualization components.",
-      "detailedDescription": "Created weather application integrating 3+ meteorological APIs with 95% data accuracy. Implemented geolocation services reducing location detection time by 2 seconds and responsive visualizations supporting 50+ weather parameters in real-time.",
-      "tech": ["React", "API Integration", "CSS3", "Geolocation"],
-      "githubLink": "https://github.com/yashasvi9199/weather-app",
-      "liveDemo": "https://yashasvi9199.github.io/weather-app/",
-      "image": "/api/placeholder/400/250"
-    },
-    {
       "id": 9,
-      "title": "React.js Projects Collection",
-      "category": "edu",
-      "description": "Demonstrated advanced React patterns including hooks, context API, and component composition with optimization.",
-      "detailedDescription": "Showcased advanced React patterns including custom hooks reducing code duplication by 30%. Implemented Context API managing complex state across 15+ components, achieving 90+ Lighthouse scores through performance optimization techniques.",
-      "tech": ["React", "JavaScript", "CSS3", "HTML5", "Context API"],
-      "githubLink": "https://github.com/yashasvi9199/React.js",
-      "liveDemo": "#",
-      "image": "/api/placeholder/400/250"
-    },
-    {
-      "id": 10,
-      "title": "Python Applications",
-      "category": "edu",
-      "description": "Created Python automation tools and system utilities for workflow optimization and development efficiency.",
-      "detailedDescription": "Engineered Python automation tools reducing manual task execution time by 70%. Developed system utilities handling file processing for 10,000+ records, optimizing development workflows and increasing team productivity by 25%.",
-      "tech": ["Python", "Pandas", "NumPy", "Flask", "SQLite"],
-      "githubLink": "https://github.com/yashasvi9199/python",
-      "liveDemo": "#",
-      "image": "/api/placeholder/400/250"
-    },
-    {
-      "id": 11,
-      "title": "Node.js Learning Projects",
-      "category": "edu",
-      "description": "Developed scalable Node.js backend systems with RESTful APIs, middleware, and MongoDB integration.",
-      "detailedDescription": "Architected Node.js backend systems handling 1,000+ RPM with RESTful APIs. Implemented middleware reducing request processing time by 200ms and MongoDB aggregation pipelines improving data retrieval efficiency by 35%.",
-      "tech": ["Node.js", "Express", "MongoDB", "JWT", "REST API"],
-      "githubLink": "https://github.com/yashasvi9199/learn-node-js",
-      "liveDemo": "#",
-      "image": "/api/placeholder/400/250"
-    },
-    {
-      "id": 12,
-      "title": "Ecommerce Platform",
-      "category": "web",
-      "description": "Implemented full-stack MERN ecommerce platform with JWT authentication and secure payment gateway integration.",
-      "detailedDescription": "Built full-stack ecommerce solution processing 500+ daily transactions with JWT-based authentication. Integrated payment gateways achieving 99.2% success rate and optimized MongoDB queries reducing database response time by 45%.",
-      "tech": ["React", "Node.js", "MongoDB", "Express", "JWT"],
-      "githubLink": "https://github.com/yashasvi9199/ecommerce",
-      "liveDemo": "#",
-      "image": "/api/placeholder/400/250"
-    },
-    {
-      "id": 13,
-      "title": "Drop Panel",
-      "category": "web",
-      "description": "Built interactive drag-and-drop panel system with smooth animations and responsive positioning",
-      "detailedDescription": "Developed a dynamic drag-and-drop interface component featuring smooth transition animations, boundary detection, and responsive positioning logic. Implemented touch and mouse event handling for cross-device compatibility.",
-      "tech": ["React", "API Integration", "CSS3", "Geolocation"],
-      "githubLink": "https://github.com/yashasvi9199/drop-panel",
-      "liveDemo": "https://yashasvi9199.github.io/drop-panel/",
-      "image": "/api/placeholder/400/250"
-    },
-    {
-      "id": 14,
-      "title": "Image Carousel",
-      "category": "web",
-      "description": "Engineered responsive image carousel with touch gestures and auto-rotation features",
-      "detailedDescription": "Built a performant image carousel supporting touch swipes, keyboard navigation, and auto-rotation. Optimized image loading with lazy loading techniques and implemented smooth transition effects.",
-      "tech": ["React", "API Integration", "CSS3", "Geolocation"],
-      "githubLink": "https://github.com/yashasvi9199/image-carousel",
-      "liveDemo": "https://yashasvi9199.github.io/image-carousel/",
-      "image": "/api/placeholder/400/250"
-    },
-    {
-      "id": 15,
-      "title": "Tic Tac Toe",
-      "category": "web",
-      "description": "Developed interactive Tic Tac Toe game with smart opponent and score tracking",
-      "detailedDescription": "Created an engaging Tic Tac Toe game featuring intelligent AI opponent with multiple difficulty levels. Implemented real-time score tracking, game history, and responsive design with smooth animations.",
-      "tech": ["React", "API Integration", "CSS3", "Geolocation"],
-      "githubLink": "https://github.com/yashasvi9199/tic-tac-toe",
-      "liveDemo": "https://yashasvi9199.github.io/tic-tac-toe/",
-      "image": "/api/placeholder/400/250"
-    },
-    {
-      "id": 17,
       "title": "Anubha Jain Portfolio",
       "category": "market",
       "description": "Professional portfolio website for a visual artist and photographer showcasing creative works.",
@@ -209,7 +121,7 @@
       "image": "/api/placeholder/400/250"
     },
     {
-      "id": 18,
+      "id": 10,
       "title": "Belle Flamz",
       "category": "market",
       "description": "E-commerce landing page and portfolio for a premium candle brand.",
@@ -220,7 +132,7 @@
       "image": "/api/placeholder/400/250"
     },
     {
-      "id": 19,
+      "id": 11,
       "title": "Excuse Generator API",
       "category": "api",
       "description": "A RESTful API service that generates context-aware excuses using AI.",
@@ -231,7 +143,7 @@
       "image": "/api/placeholder/400/250"
     },
     {
-      "id": 20,
+      "id": 12,
       "title": "PharmaScan API",
       "category": "api",
       "description": "Backend engine for medicine identification and chemical composition analysis.",
@@ -239,6 +151,94 @@
       "tech": ["Node.js", "Express", "Supabase", "JWT", "REST API"],
       "githubLink": "https://github.com/yashasvi9199/PharmaScan-API",
       "liveDemo": "#",
+      "image": "/api/placeholder/400/250"
+    },
+    {
+      "id": 13,
+      "title": "Weather Application",
+      "category": "web",
+      "description": "Built geolocation-enabled weather application with API integration and responsive data visualization components.",
+      "detailedDescription": "Created weather application integrating 3+ meteorological APIs with 95% data accuracy. Implemented geolocation services reducing location detection time by 2 seconds and responsive visualizations supporting 50+ weather parameters in real-time.",
+      "tech": ["React", "API Integration", "CSS3", "Geolocation"],
+      "githubLink": "https://github.com/yashasvi9199/weather-app",
+      "liveDemo": "https://yashasvi9199.github.io/weather-app/",
+      "image": "/api/placeholder/400/250"
+    },
+    {
+      "id": 14,
+      "title": "React.js Projects Collection",
+      "category": "edu",
+      "description": "Demonstrated advanced React patterns including hooks, context API, and component composition with optimization.",
+      "detailedDescription": "Showcased advanced React patterns including custom hooks reducing code duplication by 30%. Implemented Context API managing complex state across 15+ components, achieving 90+ Lighthouse scores through performance optimization techniques.",
+      "tech": ["React", "JavaScript", "CSS3", "HTML5", "Context API"],
+      "githubLink": "https://github.com/yashasvi9199/React.js",
+      "liveDemo": "#",
+      "image": "/api/placeholder/400/250"
+    },
+    {
+      "id": 15,
+      "title": "Python Applications",
+      "category": "edu",
+      "description": "Created Python automation tools and system utilities for workflow optimization and development efficiency.",
+      "detailedDescription": "Engineered Python automation tools reducing manual task execution time by 70%. Developed system utilities handling file processing for 10,000+ records, optimizing development workflows and increasing team productivity by 25%.",
+      "tech": ["Python", "Pandas", "NumPy", "Flask", "SQLite"],
+      "githubLink": "https://github.com/yashasvi9199/python",
+      "liveDemo": "#",
+      "image": "/api/placeholder/400/250"
+    },
+    {
+      "id": 16,
+      "title": "Node.js Learning Projects",
+      "category": "edu",
+      "description": "Developed scalable Node.js backend systems with RESTful APIs, middleware, and MongoDB integration.",
+      "detailedDescription": "Architected Node.js backend systems handling 1,000+ RPM with RESTful APIs. Implemented middleware reducing request processing time by 200ms and MongoDB aggregation pipelines improving data retrieval efficiency by 35%.",
+      "tech": ["Node.js", "Express", "MongoDB", "JWT", "REST API"],
+      "githubLink": "https://github.com/yashasvi9199/learn-node-js",
+      "liveDemo": "#",
+      "image": "/api/placeholder/400/250"
+    },
+    {
+      "id": 17,
+      "title": "Ecommerce Platform",
+      "category": "web",
+      "description": "Implemented full-stack MERN ecommerce platform with JWT authentication and secure payment gateway integration.",
+      "detailedDescription": "Built full-stack ecommerce solution processing 500+ daily transactions with JWT-based authentication. Integrated payment gateways achieving 99.2% success rate and optimized MongoDB queries reducing database response time by 45%.",
+      "tech": ["React", "Node.js", "MongoDB", "Express", "JWT"],
+      "githubLink": "https://github.com/yashasvi9199/ecommerce",
+      "liveDemo": "#",
+      "image": "/api/placeholder/400/250"
+    },
+    {
+      "id": 18,
+      "title": "Drop Panel",
+      "category": "web",
+      "description": "Built interactive drag-and-drop panel system with smooth animations and responsive positioning",
+      "detailedDescription": "Developed a dynamic drag-and-drop interface component featuring smooth transition animations, boundary detection, and responsive positioning logic. Implemented touch and mouse event handling for cross-device compatibility.",
+      "tech": ["React", "API Integration", "CSS3", "Geolocation"],
+      "githubLink": "https://github.com/yashasvi9199/drop-panel",
+      "liveDemo": "https://yashasvi9199.github.io/drop-panel/",
+      "image": "/api/placeholder/400/250"
+    },
+    {
+      "id": 19,
+      "title": "Image Carousel",
+      "category": "web",
+      "description": "Engineered responsive image carousel with touch gestures and auto-rotation features",
+      "detailedDescription": "Built a performant image carousel supporting touch swipes, keyboard navigation, and auto-rotation. Optimized image loading with lazy loading techniques and implemented smooth transition effects.",
+      "tech": ["React", "API Integration", "CSS3", "Geolocation"],
+      "githubLink": "https://github.com/yashasvi9199/image-carousel",
+      "liveDemo": "https://yashasvi9199.github.io/image-carousel/",
+      "image": "/api/placeholder/400/250"
+    },
+    {
+      "id": 20,
+      "title": "Tic Tac Toe",
+      "category": "web",
+      "description": "Developed interactive Tic Tac Toe game with smart opponent and score tracking",
+      "detailedDescription": "Created an engaging Tic Tac Toe game featuring intelligent AI opponent with multiple difficulty levels. Implemented real-time score tracking, game history, and responsive design with smooth animations.",
+      "tech": ["React", "API Integration", "CSS3", "Geolocation"],
+      "githubLink": "https://github.com/yashasvi9199/tic-tac-toe",
+      "liveDemo": "https://yashasvi9199.github.io/tic-tac-toe/",
       "image": "/api/placeholder/400/250"
     },
     {
