@@ -55,4 +55,4 @@ npm run build
 
 ---
 
-_Maintained under the Chief Architect Ruleset - 1.1.1_
+_Maintained under the Chief Architect Ruleset - 1.1.2_

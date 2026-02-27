@@ -21,6 +21,7 @@
 - **Counter-Up Stats**: Animated statistics in the About section (e.g., Performance Optimization).
 - **100vh Snapshot Layout**: Enforced strictly fitting content within viewport to ensure clean snapping without internal scrollbars.
 - **Dynamic Headers**: Auto-highlighting navigation links based on viewport visibility.
+- **Timeline Navigation**: Bottom-anchored category timeline with purple/green palette matching the Projects section theme.
 
 ## Testing & Quality
 

@@ -5,6 +5,7 @@
 ## 1.1.2
 
 - vibe: Broadened project cards — grid max-width 1200→1400px, card min-width 300→380px (desktop) and 300→340px (tablet).
+- vibe: Re-themed shared timeline to match Projects purple/green palette — purple track, soft-purple labels, green active label with glow.
 
 ## 1.1.1
 
