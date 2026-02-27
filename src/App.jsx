@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import QuantumLoader from './components/QuantumLoader'
 import ThreeBackground from './components/ThreeBackground'
 import AIChatbot from './components/AI/AIChatbot'
 import VoiceControl from './components/Interactive/VoiceControl'
+import SectionDotNav from './components/SectionDotNav'
 import Hero from './sections/Hero'
 import About from './sections/About'
 import Skills from './sections/Skills'
@@ -10,23 +11,34 @@ import Projects from './sections/Projects'
 import Experience from './sections/Experience'
 import Achievements from './sections/Achievements'
 import Contact from './sections/Contact'
-import Navigation from './sections/Navigation'; // Fixed import path
-import Footer from './sections/Footer'; // Fixed import path
-import { useScrollAnimation } from './hooks/useScrollAnimation'
+import Navigation from './sections/Navigation'
+import Footer from './sections/Footer'
+import { useFullPageScroll } from './hooks/useFullPageScroll'
 import { useLocation } from 'react-router-dom'
 import { trackPageView } from './utils/analytics'
+import './styles/fullpage.css'
+
+const SECTIONS = [
+  { id: 'home', Component: Hero },
+  { id: 'about', Component: About },
+  { id: 'skills', Component: Skills },
+  { id: 'projects', Component: Projects },
+  { id: 'experience', Component: Experience },
+  { id: 'achievements', Component: Achievements },
+  { id: 'contact', Component: Contact },
+];
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
   const [progress, setProgress] = useState(0)
   const [showAI, setShowAI] = useState(false)
-  const sectionRefs = useScrollAnimation()
   const location = useLocation()
+
+  const { currentSection, goToSection, sectionWrapperRef } = useFullPageScroll(SECTIONS.length);
 
   useEffect(() => {
     trackPageView(location.pathname + location.search)
   }, [location])
-
 
   useEffect(() => {
     const loadAssets = async () => {
@@ -40,16 +52,40 @@ function App() {
       }
       setIsLoading(false)
 
-      // Show AI components after main content is loaded
+      // Activate fullpage mode after load
+      document.documentElement.classList.add('fp-active')
+
       setTimeout(() => setShowAI(true), 1000)
     }
 
     loadAssets()
+
+    return () => {
+      document.documentElement.classList.remove('fp-active')
+    }
   }, [])
 
-  const setSectionRef = (index) => (el) => {
-    sectionRefs.current[index] = el
-  }
+  // Intercept nav hash clicks to use programmatic scroll
+  const handleNavClick = useCallback((e) => {
+    const target = e.target.closest('a[href^="#"]');
+    if (!target) return;
+
+    const href = target.getAttribute('href');
+    if (!href || href === '#') return;
+
+    const sectionId = href.replace('#', '');
+    const sectionIndex = SECTIONS.findIndex(s => s.id === sectionId);
+
+    if (sectionIndex !== -1) {
+      e.preventDefault();
+      goToSection(sectionIndex);
+    }
+  }, [goToSection]);
+
+  useEffect(() => {
+    document.addEventListener('click', handleNavClick, true);
+    return () => document.removeEventListener('click', handleNavClick, true);
+  }, [handleNavClick]);
 
   if (isLoading) {
     return <QuantumLoader progress={progress} />
@@ -57,13 +93,10 @@ function App() {
 
   return (
     <div className="app">
-      {/* Three.js Animated Background */}
       <ThreeBackground />
 
-      {/* Navigation - FIXED: Added Navigation component */}
-      <Navigation />
+      <Navigation currentSection={currentSection} />
 
-      {/* AI & Interactive Components - Load after main content */}
       {showAI && (
         <>
           <AIChatbot />
@@ -71,39 +104,28 @@ function App() {
         </>
       )}
 
-      {/* Main Content Sections */}
-      <main className="main-content">
-        <div ref={setSectionRef(0)}>
-          <Hero />
-        </div>
+      <SectionDotNav
+        currentSection={currentSection}
+        goToSection={goToSection}
+        total={SECTIONS.length}
+      />
 
-        <div ref={setSectionRef(1)}>
-          <About />
-        </div>
+      <div ref={sectionWrapperRef} className="fp-wrapper">
+        {SECTIONS.map(({ id, Component }, index) => (
+          <div
+            key={id}
+            id={id}
+            className={`fp-section ${currentSection === index ? 'fp-visible' : ''}`}
+          >
+            <Component isActive={currentSection === index} />
+          </div>
+        ))}
 
-        <div ref={setSectionRef(2)}>
-          <Skills />
+        {/* Footer sits after last section */}
+        <div className="fp-section fp-footer">
+          <Footer />
         </div>
-
-        <div ref={setSectionRef(3)}>
-          <Projects />
-        </div>
-
-        <div ref={setSectionRef(4)}>
-          <Experience />
-        </div>
-
-        <div ref={setSectionRef(5)}>
-          <Achievements />
-        </div>
-
-        <div ref={setSectionRef(6)}>
-          <Contact />
-        </div>
-      </main>
-
-      {/* Footer - FIXED: Added Footer component */}
-      <Footer />
+      </div>
     </div>
   )
 }
