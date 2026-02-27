@@ -1,8 +1,13 @@
 .projects-section {
-    padding: 2rem 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background: transparent;
     color: white;
     position: relative;
+    overflow: hidden;
 }
 
 .projects-container {
@@ -16,6 +21,7 @@
     margin-bottom: 1.5rem;
     background: linear-gradient(135deg, #6c63ff, #00ff88);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 3.5rem;
     font-weight: 700;
@@ -90,9 +96,12 @@
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    grid-template-columns: repeat(var(--item-count, 3), minmax(300px, 1fr));
     gap: 2.5rem;
     padding: 1rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center;
 }
 
 /* Flip Card Styles */
@@ -100,7 +109,7 @@
     background: transparent;
     border-radius: 20px;
     perspective: 1000px;
-    height: 450px;
+    height: 480px;
     cursor: pointer;
     opacity: 0;
     transform: translateY(30px);
@@ -332,18 +341,17 @@
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
+@media (max-width: 1200px) and (min-width: 769px) {
     .projects-grid {
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        grid-template-columns: repeat(var(--item-count, 2), minmax(300px, 1fr));
+        justify-content: center;
         gap: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
     }
 }
 
 @media (max-width: 768px) {
-    .projects-section {
-        padding: 4rem 0;
-    }
-    
     .projects-container {
         padding: 0 2rem;
     }
@@ -476,7 +484,7 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
     padding: 1rem 0;
 }
 
