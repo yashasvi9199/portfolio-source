@@ -1,26 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../styles/sections/Navigation.css';
-const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+
+const NAV_ITEMS = [
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Contact', href: '#contact' }
+];
+
+const Navigation = ({ currentSection = 0 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50); 
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Contact', href: '#contact' }
-  ]; 
+  // Derive scrolled state from section index (scrolled = not on hero)
+  const isScrolled = currentSection > 0;
 
   return (
     <nav className={`navigation ${isScrolled ? 'scrolled' : ''}`}>
@@ -32,11 +26,11 @@ const Navigation = () => {
         </div>
 
         <div className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`}>
-          {navItems.map((item, index) => (
+          {NAV_ITEMS.map((item, index) => (
             <a
               key={index}
               href={item.href}
-              className="nav-link"
+              className={`nav-link ${currentSection === index ? 'active' : ''}`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {item.name}

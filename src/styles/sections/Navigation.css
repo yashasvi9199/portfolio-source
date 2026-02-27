@@ -66,6 +66,14 @@
   width: 100%;
 }
 
+.nav-link.active {
+  color: #ffffff;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
 .mobile-menu-btn {
   display: none;
   flex-direction: column;
