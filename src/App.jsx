@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import QuantumLoader from './components/QuantumLoader'
 import ThreeBackground from './components/ThreeBackground'
 import AIChatbot from './components/AI/AIChatbot'
 import VoiceControl from './components/Interactive/VoiceControl'
-import SectionDotNav from './components/SectionDotNav'
 import Hero from './sections/Hero'
 import About from './sections/About'
 import Skills from './sections/Skills'
@@ -12,7 +11,6 @@ import Experience from './sections/Experience'
 import Achievements from './sections/Achievements'
 import Contact from './sections/Contact'
 import Navigation from './sections/Navigation'
-import Footer from './sections/Footer'
 import { useFullPageScroll } from './hooks/useFullPageScroll'
 import { useLocation } from 'react-router-dom'
 import { trackPageView } from './utils/analytics'
@@ -26,7 +24,6 @@ const SECTIONS = [
   { id: 'experience', Component: Experience },
   { id: 'achievements', Component: Achievements },
   { id: 'contact', Component: Contact },
-  // { id: 'footer', Component: Footer }
 ];
 
 function App() {
@@ -105,18 +102,12 @@ function App() {
         </>
       )}
 
-      <SectionDotNav
-        currentSection={currentSection}
-        goToSection={goToSection}
-        total={SECTIONS.length}
-      />
-
       <div ref={sectionWrapperRef} className="fp-wrapper">
-        {SECTIONS.map(({ id, Component, overflow }, index) => {
+        {SECTIONS.map(({ id, Component }, index) => {
           const classes = [
             'fp-section',
             currentSection === index ? 'fp-visible' : '',
-            overflow ? 'fp-overflow' : '',
+            id === 'projects' || id === 'experience' || id === 'achievements' ? 'fp-overflow' : '',
             id === 'footer' ? 'fp-footer' : ''
           ].filter(Boolean).join(' ');
 
