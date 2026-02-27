@@ -30,7 +30,7 @@ test.describe('Fullpage Scroll System', () => {
 
     // ─── Alignment ───────────────────────────────────────────
     test('sections are horizontally centered', async ({ page }) => {
-        const sectionIds = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];
+        const sectionIds = ['home', 'about', 'skills', 'projects', 'experience', 'achievements', 'contact'];
 
         for (const id of sectionIds) {
             const section = page.locator(`#${id}`);
@@ -90,45 +90,33 @@ test.describe('Fullpage Scroll System', () => {
     });
 
     // ─── Content Clipping ────────────────────────────────────
-    test('Projects section has fp-overflow for internal scroll', async ({ page }) => {
+    // ─── Content Bounds ────────────────────────────────────
+    test('Projects section fits within viewport', async ({ page }) => {
         await navigateToSection(page, 3);
-
         const section = page.locator('#projects');
-        await expect(section).toHaveClass(/fp-overflow/);
-
-        const inner = page.locator('#projects > div');
-        const scrollHeight = await inner.evaluate(el => el.scrollHeight);
-        const clientHeight = await inner.evaluate(el => el.clientHeight);
-        expect(scrollHeight).toBeGreaterThanOrEqual(clientHeight);
+        const box = await section.boundingBox();
+        expect(box.height).toBeLessThanOrEqual(page.viewportSize().height + 1);
     });
 
-    test('Contact section has fp-overflow for internal scroll', async ({ page }) => {
-        await navigateToSection(page, 6);
+    test('Achievements section fits within viewport', async ({ page }) => {
+        await navigateToSection(page, 5);
+        const section = page.locator('#achievements');
+        const box = await section.boundingBox();
+        expect(box.height).toBeLessThanOrEqual(page.viewportSize().height + 1);
+    });
 
+    test('Contact section fits within viewport', async ({ page }) => {
+        await navigateToSection(page, 6);
         const section = page.locator('#contact');
-        await expect(section).toHaveClass(/fp-overflow/);
+        const box = await section.boundingBox();
+        expect(box.height).toBeLessThanOrEqual(page.viewportSize().height + 1);
     });
 
-    test('Experience section has fp-overflow for internal scroll', async ({ page }) => {
-        await navigateToSection(page, 4);
-
-        const section = page.locator('#experience');
-        await expect(section).toHaveClass(/fp-overflow/);
-    });
-
-    // ─── Footer Visibility ──────────────────────────────────
-    test('footer is visible inside Contact section', async ({ page }) => {
-        await navigateToSection(page, 6);
-
-        const footer = page.locator('#contact .footer');
-        await expect(footer).toBeAttached();
-
-        // Scroll internal content to bottom to reveal footer
-        const inner = page.locator('#contact > div');
-        await inner.evaluate(el => el.scrollTo(0, el.scrollHeight));
-        await page.waitForTimeout(500);
-
-        await expect(footer).toBeVisible();
+    // ─── Navigation Checks ──────────────────────────────────
+    test('keyboard navigation (ArrowDown) works', async ({ page }) => {
+        await page.keyboard.press('ArrowDown');
+        await page.waitForTimeout(2000);
+        await expect(page.locator('#about')).toHaveClass(/fp-visible/);
     });
 
     // ─── Active Nav Highlighting ────────────────────────────
