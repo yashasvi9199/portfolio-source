@@ -3,7 +3,7 @@
 ## Core Architecture
 
 - **Fullpage Scroll System**: GSAP-powered snap scroll transitions with scroll hijacking.
-- **Atomic Sections**: Each section (`About`, `Skills`, `Projects`, etc.) is a self-contained feature component.
+- **Atomic Sections**: Each section (`About`, `Skills`, `Projects`, `Experience`, `Achievements`, `Contact`) is a self-contained feature component.
 - **Three.js Background**: Immersive 3D interactive background integrated with React.
 
 ## Interactive Elements
@@ -19,7 +19,7 @@
 - **Project Showcase**: Filterable grid with category-based project organization.
 - **Flip Cards**: Interactive cards revealing project details and achievements.
 - **Counter-Up Stats**: Animated statistics in the About section (e.g., Performance Optimization).
-- **Responsive Overflow**: Intelligent content clipping management with internal scroll containers.
+- **100vh Snapshot Layout**: Enforced strictly fitting content within viewport to ensure clean snapping without internal scrollbars.
 - **Dynamic Headers**: Auto-highlighting navigation links based on viewport visibility.
 
 ## Testing & Quality
