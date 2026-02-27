@@ -26,11 +26,17 @@ export const useFullPageScroll = (totalSections) => {
         setCurrentSection(index);
 
         const wrapper = sectionWrapperRef.current;
-        if (!wrapper) return;
+        if (!wrapper) {
+            isAnimating.current = false;
+            return;
+        }
 
         const sections = wrapper.querySelectorAll('.fp-section');
         const target = sections[index];
-        if (!target) return;
+        if (!target) {
+            isAnimating.current = false;
+            return;
+        }
 
         const duration = immediate ? 0 : 0.8;
 
@@ -42,6 +48,11 @@ export const useFullPageScroll = (totalSections) => {
                 isAnimating.current = false;
             },
         });
+
+        // Safety: force-clear animating flag after max duration + buffer
+        setTimeout(() => {
+            isAnimating.current = false;
+        }, (duration + 0.5) * 1000);
     }, [totalSections]);
 
     // Observer for wheel / touch / keyboard
@@ -58,8 +69,7 @@ export const useFullPageScroll = (totalSections) => {
             const current = sections[currentRef.current];
             if (!current) return false;
 
-            // Find scrollable child containers within the section
-            const scrollables = current.querySelectorAll('.fp-scrollable');
+            const scrollables = current.querySelectorAll('.fp-overflow > *');
             if (scrollables.length === 0) return false;
 
             for (const el of scrollables) {
@@ -87,12 +97,11 @@ export const useFullPageScroll = (totalSections) => {
         };
 
         const observer = Observer.create({
-            target: window,
+            target: document.documentElement,
             type: 'wheel,touch',
-            wheelSpeed: -1,
-            tolerance: 50,
-            onUp: goNext,
-            onDown: goPrev,
+            tolerance: 10,
+            onDown: goNext,
+            onUp: goPrev,
             preventDefault: true,
         });
 

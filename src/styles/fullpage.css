@@ -7,7 +7,6 @@ html.fp-active,
 html.fp-active body {
   overflow: hidden;
   height: 100vh;
-  position: fixed;
   width: 100%;
 }
 
@@ -28,7 +27,13 @@ html.fp-active body {
   position: relative;
   display: flex;
   align-items: center;
-  overflow: hidden;
+  justify-content: center;
+  overflow: visible;
+}
+
+/* Ensure child content spans full width */
+.fp-section > * {
+  width: 100%;
 }
 
 /* Allow internal scrolling on content-heavy sections */
@@ -40,6 +45,18 @@ html.fp-active body {
   max-height: 100vh;
   overflow-y: auto;
   width: 100%;
+  padding-top: 80px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar on internal scroll but keep functionality */
+.fp-section.fp-overflow > *::-webkit-scrollbar {
+  width: 4px;
+}
+
+.fp-section.fp-overflow > *::-webkit-scrollbar-thumb {
+  background: rgba(108, 99, 255, 0.3);
+  border-radius: 2px;
 }
 
 /* Footer section — auto height, not full viewport */
@@ -105,9 +122,19 @@ html.fp-active body {
   cursor: pointer;
   padding: 4px;
   outline: none;
+  /* Explicit resets to prevent global button inflation */
+  appearance: none;
+  -webkit-appearance: none;
+  min-width: 0;
+  min-height: 0;
+  width: auto;
+  height: auto;
+  line-height: 1;
+  font-size: 0;
 }
 
 .fp-dot-inner {
+  display: block;
   width: 10px;
   height: 10px;
   border-radius: 50%;

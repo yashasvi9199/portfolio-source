@@ -22,10 +22,10 @@ const SECTIONS = [
   { id: 'home', Component: Hero },
   { id: 'about', Component: About },
   { id: 'skills', Component: Skills },
-  { id: 'projects', Component: Projects },
-  { id: 'experience', Component: Experience },
-  { id: 'achievements', Component: Achievements },
-  { id: 'contact', Component: Contact },
+  { id: 'projects', Component: Projects, overflow: true },
+  { id: 'experience', Component: Experience, overflow: true },
+  { id: 'achievements', Component: Achievements, overflow: true },
+  { id: 'contact', Component: Contact, overflow: true },
 ];
 
 function App() {
@@ -111,20 +111,23 @@ function App() {
       />
 
       <div ref={sectionWrapperRef} className="fp-wrapper">
-        {SECTIONS.map(({ id, Component }, index) => (
-          <div
-            key={id}
-            id={id}
-            className={`fp-section ${currentSection === index ? 'fp-visible' : ''}`}
-          >
-            <Component isActive={currentSection === index} />
-          </div>
-        ))}
+        {SECTIONS.map(({ id, Component, overflow }, index) => {
+          const isLast = index === SECTIONS.length - 1;
+          const classes = [
+            'fp-section',
+            currentSection === index ? 'fp-visible' : '',
+            overflow ? 'fp-overflow' : '',
+          ].filter(Boolean).join(' ');
 
-        {/* Footer sits after last section */}
-        <div className="fp-section fp-footer">
-          <Footer />
-        </div>
+          return (
+            <div key={id} id={id} className={classes}>
+              <div>
+                <Component isActive={currentSection === index} />
+                {isLast && <Footer />}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   )
