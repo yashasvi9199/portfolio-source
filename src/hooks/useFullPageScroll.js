@@ -9,9 +9,10 @@ gsap.registerPlugin(Observer);
  * Hijacks native scroll, animates sections in/out with slide transitions.
  *
  * @param {number} totalSections - Total number of scrollable sections
+ * @param {boolean} enabled - Whether the scroll system is active (pass !isLoading)
  * @returns {{ currentSection, goToSection, sectionWrapperRef }}
  */
-export const useFullPageScroll = (totalSections) => {
+export const useFullPageScroll = (totalSections, enabled = true) => {
     const [currentSection, setCurrentSection] = useState(0);
     const sectionWrapperRef = useRef(null);
     const isAnimating = useRef(false);
@@ -56,7 +57,10 @@ export const useFullPageScroll = (totalSections) => {
     }, [totalSections]);
 
     // Observer for wheel / touch / keyboard
+    // Re-runs when `enabled` flips to true (loader done, wrapper is in DOM)
     useEffect(() => {
+        if (!enabled) return;
+
         const wrapper = sectionWrapperRef.current;
         if (!wrapper) return;
 
@@ -102,7 +106,7 @@ export const useFullPageScroll = (totalSections) => {
             tolerance: 10,
             onDown: goNext,
             onUp: goPrev,
-            preventDefault: false,
+            preventDefault: true,
         });
 
         // Keyboard navigation
@@ -144,7 +148,7 @@ export const useFullPageScroll = (totalSections) => {
             window.removeEventListener('keydown', handleKeyDown);
             window.removeEventListener('resize', handleResize);
         };
-    }, [totalSections, goToSection]);
+    }, [totalSections, goToSection, enabled]);
 
     return { currentSection, goToSection, sectionWrapperRef };
 };

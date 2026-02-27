@@ -32,7 +32,7 @@ function App() {
   const [showAI, setShowAI] = useState(false)
   const location = useLocation()
 
-  const { currentSection, goToSection, sectionWrapperRef } = useFullPageScroll(SECTIONS.length);
+  const { currentSection, goToSection, sectionWrapperRef } = useFullPageScroll(SECTIONS.length, !isLoading);
 
   useEffect(() => {
     trackPageView(location.pathname + location.search)
