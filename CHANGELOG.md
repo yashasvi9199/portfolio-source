@@ -1,8 +1,15 @@
-# Changelog
-
-# version 1.0
-
 # version 1.1
+
+|
+
+## 1.1.1
+
+- fix: Refined section heights and paddings to fit strictly within 100vh.
+- fix: Updated `useFullPageScroll` observer to use `preventDefault: false` for better compatibility.
+- fix: Removed `fp-overflow` from Projects and Experience sections for a cleaner 100vh snap flow.
+- fix: Temporarily removed Footer section to resolve overflow clipping issues.
+- feature: Added "Achievements" section to the core navigation and fullpage scroll flow.
+- docs: Updated features list and README versioning.
 
 ## 1.1.0
 
